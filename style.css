@@ -372,6 +372,7 @@ body {
 .video-panel {
     position: relative;
     overflow: hidden;
+    z-index: 50;
 }
 
 .bg-video {
@@ -389,7 +390,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 100;
+    z-index: 1100;
 }
 
 .debug-test {
@@ -399,7 +400,7 @@ body {
     background: red;
     color: white;
     padding: 10px;
-    z-index: 300;
+    z-index: 1200;
     font-weight: bold;
 }
 
@@ -412,7 +413,7 @@ body {
     transform: translate(-50%, -50%);
     opacity: 1;
     filter: drop-shadow(0 0 30px #ff00ff) brightness(2) contrast(2);
-    z-index: 500;
+    z-index: 1300;
     border: 4px solid #ff00ff;
     border-radius: 50%;
     background: rgba(255, 0, 255, 0.1);
