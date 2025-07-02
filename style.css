@@ -394,14 +394,17 @@ body {
 
 .laughingman-overlay {
     position: absolute;
-    top: 35%;
-    left: 45%;
-    width: 100px;
-    height: 100px;
+    top: 20%;
+    left: 50%;
+    width: 120px;
+    height: 120px;
     transform: translate(-50%, -50%);
     opacity: 1;
-    filter: drop-shadow(0 0 20px #00ffff) brightness(1.2);
-    animation: faceTrackFloat 4s ease-in-out infinite;
+    filter: drop-shadow(0 0 25px #ff00ff) brightness(1.5);
+    z-index: 200;
+    border: 2px solid rgba(255, 0, 255, 0.5);
+    border-radius: 50%;
+    animation: laughingmanFloat 3s ease-in-out infinite;
 }
 
 .tracking-crosshair {
@@ -489,11 +492,15 @@ body {
     font-size: 10px;
 }
 
-@keyframes faceTrackFloat {
-    0%, 100% { transform: translate(-50%, -50%) scale(1); }
-    25% { transform: translate(-48%, -52%) scale(1.05); }
-    50% { transform: translate(-52%, -50%) scale(0.95); }
-    75% { transform: translate(-50%, -48%) scale(1.02); }
+@keyframes laughingmanFloat {
+    0%, 100% { 
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+        filter: drop-shadow(0 0 25px #ff00ff) brightness(1.5);
+    }
+    50% { 
+        transform: translate(-50%, -50%) scale(1.1) rotate(2deg);
+        filter: drop-shadow(0 0 35px #00ffff) brightness(1.8);
+    }
 }
 
 @keyframes trackingPulse {
