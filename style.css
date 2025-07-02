@@ -13,6 +13,19 @@ body {
     overflow-x: hidden;
 }
 
+body::before {
+    content: 'CSS LOADED';
+    position: fixed !important;
+    top: 10px !important;
+    right: 10px !important;
+    background: lime !important;
+    color: black !important;
+    padding: 10px !important;
+    z-index: 2147483647 !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+}
+
 /* Background Layers */
 .bg-layer-1 {
     position: fixed;
@@ -385,21 +398,24 @@ body {
 
 /* Simple Test - No complications */
 .simple-test {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 400px;
-    height: 200px;
-    background: red;
-    color: white;
-    font-size: 48px;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 99999;
-    border: 10px solid yellow;
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 400px !important;
+    height: 200px !important;
+    background: red !important;
+    color: white !important;
+    font-size: 48px !important;
+    font-weight: bold !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    z-index: 2147483647 !important;
+    border: 10px solid yellow !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
 }
 
 .debug-test-global {
