@@ -485,7 +485,7 @@ function simulateVideoError() {
     }
 }
 
-// Terminal command simulation
+// Enhanced Terminal command simulation with corruption
 function simulateTerminalActivity() {
     const terminalContent = document.querySelector('.terminal-content');
     if (!terminalContent) return;
@@ -498,7 +498,19 @@ function simulateTerminalActivity() {
         'whoami && echo $ANGEL_NAME',
         'ls -la /library/dead_sea_scrolls/',
         'netstat -an | grep "abyss"',
-        'invoke solomon_key --ring 72'
+        'invoke solomon_key --ring 72',
+        'ps aux | grep daemon',
+        'mount /dev/consciousness /mind',
+        'cat /proc/reality/status',
+        'ssh lain@layer07.wired',
+        'decode --format ascii /tmp/memory.dump',
+        'nmap -sS cyberia.net',
+        'tcpdump -i wired0 port 23',
+        'systemctl status identity.service',
+        'chmod 777 /home/lain/present_day',
+        'rm -rf /var/log/childhood/*',
+        'wget http://cyberia.club/bear.exe',
+        'git clone https://github.com/god/universe.git'
     ];
     
     const outputs = [
@@ -509,7 +521,31 @@ function simulateTerminalActivity() {
         'uid=metatron gid=seraphim groups=cherubim',
         'Scroll fragments: apocalypse.txt corrupted',
         'Connection to abyss: FORBIDDEN_ACCESS',
-        'Solomon ring activated: 72 daemons bound'
+        'Solomon ring activated: 72 daemons bound',
+        'root      1337  0.0  66.6  ∞       ?    Ss   ??:??  0:00 /sbin/god',
+        'mount: /mind: permission denied (are you lain?)',
+        'reality.status: QUESTIONABLE | uptime: ∞ | load: 蜀ｬ鬥ｬ縺',
+        'ssh: connect to host layer07.wired port 22: 縺ゅ＞縺�∴縺�',
+        'decoded: I AM... WHO AM I? 誰が私を見ているの？',
+        'Host cyberia.net (127.0.0.1) appears to be up',
+        '03:33:33.333 IP wired > consciousness: PSH 蜀ｬ鬥ｬ繝�',
+        'identity.service: �撰ｼ托ｼ抵ｼ���ｽゑｽ� FAILED (code=404)',
+        'chmod: cannot access \'/home/lain/present_day\': 讖溯�繝ｻ遐皮ｩｶ',
+        'rm: cannot remove \'childhood\': �樞包ｼ搾ｼ�ｿ��｡繹ｱ竭�竇｡',
+        'bear.exe: Downloaded. WARNING: 譁�ｭ怜喧縺代ヱ繧ｿ繝ｼ繝ｳ detected',
+        'fatal: repository \'https://github.com/god/universe.git\' not found'
+    ];
+    
+    // Enhanced corruption patterns
+    const corruptionPatterns = [
+        'ERROR: �ｱ�ｲ�ｳ�ｴ�ｵ MEMORY LEAK DETECTED',
+        'WARNING: �ｧ�ｨ�ｩ�ｪ繧ｩ STACK OVERFLOW',
+        'CRITICAL: 蜀ｬ鬥ｬ縺九★縺 SEGMENTATION FAULT',
+        'ALERT: 縺ゅ＞縺�∴縺� BUFFER UNDERRUN', 
+        'PANIC: 讖溯�繝ｻ遐皮ｩｶ KERNEL CORRUPTION',
+        'FATAL: �撰ｼ托ｼ抵ｼ���ｽゑｽ� SYSTEM FAILURE',
+        'ERROR: 譁�ｭ怜喧縺代ヱ繧ｿ繝ｼ繝ｳ PARSE ERROR',
+        'WARNING: �樞包ｼ搾ｼ�ｿ��｡繹ｱ竭�竇｡ IDENTITY CRISIS'
     ];
     
     // Remove cursor
@@ -521,44 +557,72 @@ function simulateTerminalActivity() {
     const newCommand = document.createElement('div');
     newCommand.className = 'code-line';
     newCommand.innerHTML = `
-        <span class="prompt">metatron@sefirot:~$</span>
+        <span class="prompt">lain@wired:~$</span>
         <span class="command">${commands[commandIndex]}</span>
     `;
     terminalContent.appendChild(newCommand);
     
-    // Add output after delay
+    // Add output after shorter delay
     setTimeout(() => {
         const outputLine = document.createElement('div');
         outputLine.className = 'code-line';
-        outputLine.innerHTML = `<span class="output">${outputs[commandIndex]}</span>`;
+        
+        // Random corruption chance
+        if (Math.random() < 0.3) {
+            const corruptIndex = Math.floor(Math.random() * corruptionPatterns.length);
+            outputLine.innerHTML = `<span class="output" style="color: #ff0040; animation: errorFlash 1s infinite;">${corruptionPatterns[corruptIndex]}</span>`;
+        } else {
+            outputLine.innerHTML = `<span class="output">${outputs[commandIndex]}</span>`;
+        }
+        
         terminalContent.appendChild(outputLine);
         
-        // Add new prompt with cursor
-        const promptLine = document.createElement('div');
-        promptLine.className = 'code-line';
-        promptLine.innerHTML = `
-            <span class="prompt">metatron@sefirot:~$</span>
-            <span class="cursor-blink">_</span>
-        `;
-        terminalContent.appendChild(promptLine);
-        
-        // Keep only last 10 lines
-        const lines = terminalContent.querySelectorAll('.code-line');
-        if (lines.length > 10) {
-            for (let i = 0; i < lines.length - 10; i++) {
-                lines[i].remove();
-            }
+        // Multiple output lines sometimes
+        if (Math.random() < 0.4) {
+            setTimeout(() => {
+                const extraLine = document.createElement('div');
+                extraLine.className = 'code-line';
+                const extraOutputs = [
+                    '蜀ｬ鬥ｬ縺九★縺... loading... �ｱ�ｲ�ｳ',
+                    'Processing... 縺ゅ＞縺�∴縺�... complete',
+                    'Analyzing... 讖溯�繝ｻ遐皮ｩｶ... failed',
+                    'Connecting... �撰ｼ托ｼ抵ｼ���ｽゑｽ�... timeout',
+                    'Decrypting... 譁�ｭ怜喧縺代ヱ繧ｿ繝ｼ繝ｳ... error'
+                ];
+                extraLine.innerHTML = `<span class="output" style="opacity: 0.7;">${extraOutputs[Math.floor(Math.random() * extraOutputs.length)]}</span>`;
+                terminalContent.appendChild(extraLine);
+            }, 300);
         }
-    }, 1000 + Math.random() * 2000);
+        
+        // Add new prompt with cursor
+        setTimeout(() => {
+            const promptLine = document.createElement('div');
+            promptLine.className = 'code-line';
+            promptLine.innerHTML = `
+                <span class="prompt">lain@wired:~$</span>
+                <span class="cursor-blink">_</span>
+            `;
+            terminalContent.appendChild(promptLine);
+            
+            // Keep only last 12 lines
+            const lines = terminalContent.querySelectorAll('.code-line');
+            if (lines.length > 12) {
+                for (let i = 0; i < lines.length - 12; i++) {
+                    lines[i].remove();
+                }
+            }
+        }, 500);
+        
+    }, 500 + Math.random() * 1000); // Faster response
 }
 
 // Initialize default view
 showTerminalView();
 
 // Set up intervals for dynamic effects
-setInterval(randomSystemGlitch, 8000 + Math.random() * 10000);
+setInterval(randomSystemGlitch, 6000 + Math.random() * 8000);
 setInterval(simulateVideoError, 15000 + Math.random() * 20000);
-setInterval(simulateTerminalActivity, 5000 + Math.random() * 10000);
+setInterval(simulateTerminalActivity, 2000 + Math.random() * 4000); // Much faster terminal
 
 // Add some startup effects
 setTimeout(() => {

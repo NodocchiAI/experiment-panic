@@ -15,7 +15,7 @@ body {
 
 
 .laughing-man-gif {
-    position: fixed !important;
+    position: absolute !important;
     top: 50% !important;
     left: 82% !important;
     width: 100px !important;
