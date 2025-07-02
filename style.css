@@ -13,35 +13,6 @@ body {
     overflow-x: hidden;
 }
 
-body::before {
-    content: 'CSS LOADED';
-    position: fixed !important;
-    top: 10px !important;
-    right: 10px !important;
-    background: lime !important;
-    color: black !important;
-    padding: 10px !important;
-    z-index: 2147483647 !important;
-    font-size: 16px !important;
-    font-weight: bold !important;
-}
-
-.emergency-test {
-    position: fixed !important;
-    top: 10px !important;
-    left: 10px !important;
-    width: 200px !important;
-    height: 80px !important;
-    background: orange !important;
-    color: black !important;
-    font-size: 24px !important;
-    font-weight: bold !important;
-    z-index: 2147483647 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    border: 3px solid red !important;
-}
 
 .laughing-man-final {
     position: fixed !important;
