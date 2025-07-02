@@ -29,6 +29,19 @@ body {
     border-radius: 50% !important;
 }
 
+.laughing-man-fixed {
+    position: fixed !important;
+    top: 30% !important;
+    left: 70% !important;
+    width: 80px !important;
+    height: 80px !important;
+    z-index: 9999 !important;
+    opacity: 1 !important;
+    filter: drop-shadow(0 0 15px #ff00ff) brightness(1.3) contrast(1.3) !important;
+    border: 2px solid #ff00ff !important;
+    border-radius: 50% !important;
+}
+
 @keyframes laughingmanGifFloat {
     0%, 100% { 
         transform: translate(-50%, -50%) scale(1) rotate(0deg) !important;
@@ -411,6 +424,18 @@ body {
     position: relative;
     overflow: hidden;
     z-index: 50;
+    border: 2px solid lime; /* DEBUG: See panel boundaries */
+}
+
+.debug-position {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: red;
+    color: white;
+    padding: 10px;
+    z-index: 9999;
+    font-weight: bold;
 }
 
 .bg-video {
