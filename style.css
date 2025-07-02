@@ -392,18 +392,30 @@ body {
     z-index: 100;
 }
 
+.debug-test {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: red;
+    color: white;
+    padding: 10px;
+    z-index: 300;
+    font-weight: bold;
+}
+
 .laughingman-overlay {
     position: absolute;
-    top: 20%;
+    top: 30%;
     left: 50%;
-    width: 120px;
-    height: 120px;
+    width: 150px;
+    height: 150px;
     transform: translate(-50%, -50%);
     opacity: 1;
-    filter: drop-shadow(0 0 25px #ff00ff) brightness(1.5);
-    z-index: 200;
-    border: 2px solid rgba(255, 0, 255, 0.5);
+    filter: drop-shadow(0 0 30px #ff00ff) brightness(2) contrast(2);
+    z-index: 500;
+    border: 4px solid #ff00ff;
     border-radius: 50%;
+    background: rgba(255, 0, 255, 0.1);
     animation: laughingmanFloat 3s ease-in-out infinite;
 }
 
