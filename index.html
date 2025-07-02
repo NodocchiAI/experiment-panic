@@ -95,36 +95,69 @@
                 <video autoplay muted loop class="bg-video">
                     <source src="assets/glitch_girl.mp4" type="video/mp4">
                 </video>
+                <div class="face-tracker">
+                    <img src="assets/hud/laughingman.gif" class="laughingman-overlay" alt="face_tracking">
+                    <div class="tracking-crosshair"></div>
+                    <div class="tracking-box"></div>
+                    <div class="tracking-data">
+                        <span class="track-label">FACE_DETECTED</span>
+                        <span class="track-coords">X:127 Y:89</span>
+                    </div>
+                </div>
                 <div class="video-overlay">
                     <div class="overlay-text">
                         <div class="large-text">אני מי?</div>
-                        <div class="small-text">soul.dll corrupted by digital daemons</div>
+                        <div class="small-text">identity.exe not found</div>
                     </div>
                 </div>
             </section>
 
-            <!-- Data Visualization -->
+            <!-- HUD Analysis Panel -->
             <section class="data-viz-panel">
-                <div class="panel-header">DATA_STREAM</div>
+                <div class="panel-header">
+                    <span>NEURAL_PATTERN_ANALYSIS</span>
+                    <div class="hud-status">
+                        <span class="status-dot scanning"></span>
+                        <span class="status-text">SCANNING</span>
+                    </div>
+                </div>
                 <div class="data-content">
-                    <div class="waveform">
-                        <div class="wave-line"></div>
-                        <div class="wave-line"></div>
-                        <div class="wave-line"></div>
-                        <div class="wave-line"></div>
+                    <div class="neural-hud">
+                        <div class="neural-grid">
+                            <div class="grid-line horizontal"></div>
+                            <div class="grid-line horizontal"></div>
+                            <div class="grid-line horizontal"></div>
+                            <div class="grid-line vertical"></div>
+                            <div class="grid-line vertical"></div>
+                            <div class="grid-line vertical"></div>
+                        </div>
+                        <div class="neural-nodes">
+                            <div class="node node-1"></div>
+                            <div class="node node-2"></div>
+                            <div class="node node-3"></div>
+                            <div class="node node-4"></div>
+                            <div class="node node-5"></div>
+                        </div>
+                        <div class="neural-connections">
+                            <div class="connection-line line-1"></div>
+                            <div class="connection-line line-2"></div>
+                            <div class="connection-line line-3"></div>
+                        </div>
+                        <div class="hud-crosshair"></div>
+                        <div class="hud-scanner"></div>
                     </div>
                     <div class="data-metrics">
                         <div class="metric">
-                            <span class="metric-label">DIARY_ENTRIES</span>
-                            <span class="metric-value">∞</span>
+                            <span class="metric-label">NEURAL_ACTIVITY</span>
+                            <span class="metric-value">94.7%</span>
                         </div>
                         <div class="metric">
-                            <span class="metric-label">NOVELS</span>
-                            <span class="metric-value">127</span>
+                            <span class="metric-label">SYNC_RATIO</span>
+                            <span class="metric-value">0.783</span>
                         </div>
                         <div class="metric">
-                            <span class="metric-label">CONNECTION</span>
-                            <span class="metric-value">UNSTABLE</span>
+                            <span class="metric-label">STATUS</span>
+                            <span class="metric-value error">ANOMALY</span>
                         </div>
                     </div>
                 </div>
