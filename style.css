@@ -407,20 +407,29 @@ body {
     pointer-events: auto;
 }
 
-.laughingman-global {
+.laughingman-replacement {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 200px;
-    height: 200px;
+    top: 35%;
+    left: 45%;
+    width: 120px;
+    height: 120px;
     transform: translate(-50%, -50%);
-    opacity: 1;
-    filter: drop-shadow(0 0 50px #ff00ff) brightness(3) contrast(3);
-    z-index: 10001;
-    border: 6px solid #ff00ff;
+    background: rgba(0, 0, 0, 0.8);
+    border: 3px solid #00ffff;
     border-radius: 50%;
-    background: rgba(255, 0, 255, 0.3);
-    animation: laughingmanFloat 2s ease-in-out infinite;
+    color: #00ffff;
+    font-family: 'VT323', monospace;
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 10001;
+    box-shadow: 
+        0 0 20px #00ffff,
+        inset 0 0 20px rgba(0, 255, 255, 0.3);
+    animation: laughingmanFloat 3s ease-in-out infinite;
 }
 
 /* Old Face Tracker */
