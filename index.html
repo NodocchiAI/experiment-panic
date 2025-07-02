@@ -95,16 +95,6 @@
                 <video autoplay muted loop class="bg-video">
                     <source src="assets/glitch_girl.mp4" type="video/mp4">
                 </video>
-                <div class="face-tracker">
-                    <div class="debug-test">TEST VISIBLE</div>
-                    <img src="./assets/hud/laughingman.gif" class="laughingman-overlay" alt="face_tracking">
-                    <div class="tracking-crosshair"></div>
-                    <div class="tracking-box"></div>
-                    <div class="tracking-data">
-                        <span class="track-label">FACE_DETECTED</span>
-                        <span class="track-coords">X:127 Y:89</span>
-                    </div>
-                </div>
                 <div class="video-overlay">
                     <div class="overlay-text">
                         <div class="large-text">אני מי?</div>
@@ -112,6 +102,12 @@
                     </div>
                 </div>
             </section>
+
+            <!-- Separate Face Tracker (outside video panel) -->
+            <div class="face-tracker-global">
+                <div class="debug-test-global">GLOBAL TEST</div>
+                <img src="./assets/hud/laughingman.gif" class="laughingman-global" alt="face_tracking">
+            </div>
 
             <!-- HUD Analysis Panel -->
             <section class="data-viz-panel">

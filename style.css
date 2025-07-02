@@ -383,7 +383,47 @@ body {
     mix-blend-mode: normal;
 }
 
-/* Face Tracker */
+/* Global Face Tracker (independent layer) */
+.face-tracker-global {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+.debug-test-global {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    background: lime;
+    color: black;
+    padding: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    z-index: 10000;
+    pointer-events: auto;
+}
+
+.laughingman-global {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 200px;
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    filter: drop-shadow(0 0 50px #ff00ff) brightness(3) contrast(3);
+    z-index: 10001;
+    border: 6px solid #ff00ff;
+    border-radius: 50%;
+    background: rgba(255, 0, 255, 0.3);
+    animation: laughingmanFloat 2s ease-in-out infinite;
+}
+
+/* Old Face Tracker */
 .face-tracker {
     position: absolute;
     top: 0;
