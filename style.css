@@ -43,6 +43,31 @@ body::before {
     border: 3px solid red !important;
 }
 
+.laughing-man-final {
+    position: fixed !important;
+    top: 35% !important;
+    left: 45% !important;
+    width: 120px !important;
+    height: 120px !important;
+    transform: translate(-50%, -50%) !important;
+    background: rgba(0, 0, 0, 0.8) !important;
+    border: 3px solid #00ffff !important;
+    border-radius: 50% !important;
+    color: #00ffff !important;
+    font-family: 'VT323', monospace !important;
+    font-size: 14px !important;
+    font-weight: bold !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    z-index: 2147483647 !important;
+    box-shadow: 
+        0 0 20px #00ffff !important,
+        inset 0 0 20px rgba(0, 255, 255, 0.3) !important;
+    animation: laughingmanFloat 3s ease-in-out infinite !important;
+}
+
 /* Background Layers */
 .bg-layer-1 {
     position: fixed;
