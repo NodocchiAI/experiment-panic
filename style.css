@@ -29,17 +29,41 @@ body {
     border-radius: 50% !important;
 }
 
-.laughing-man-fixed {
+.laughing-man-text {
+    position: absolute !important;
+    top: 50% !important;
+    left: 82% !important;
+    width: 100px !important;
+    height: 100px !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 9999 !important;
+    background: cyan !important;
+    color: black !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-weight: bold !important;
+    border: 2px solid black !important;
+    border-radius: 50% !important;
+    font-size: 10px !important;
+}
+
+.laughing-man-fixed-text {
     position: fixed !important;
     top: 30% !important;
     left: 70% !important;
     width: 80px !important;
     height: 80px !important;
     z-index: 9999 !important;
-    opacity: 1 !important;
-    filter: drop-shadow(0 0 15px #ff00ff) brightness(1.3) contrast(1.3) !important;
-    border: 2px solid #ff00ff !important;
+    background: magenta !important;
+    color: white !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-weight: bold !important;
+    border: 2px solid white !important;
     border-radius: 50% !important;
+    font-size: 10px !important;
 }
 
 @keyframes laughingmanGifFloat {
