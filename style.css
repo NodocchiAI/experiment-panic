@@ -418,6 +418,51 @@ body::before {
     pointer-events: auto !important;
 }
 
+.test-box-1 {
+    position: fixed !important;
+    top: 100px !important;
+    left: 100px !important;
+    width: 200px !important;
+    height: 100px !important;
+    background: blue !important;
+    color: white !important;
+    font-size: 24px !important;
+    z-index: 2147483647 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.test-box-2 {
+    position: fixed !important;
+    top: 50% !important;
+    left: 100px !important;
+    width: 200px !important;
+    height: 100px !important;
+    background: green !important;
+    color: white !important;
+    font-size: 24px !important;
+    z-index: 2147483647 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.test-box-3 {
+    position: fixed !important;
+    bottom: 100px !important;
+    right: 100px !important;
+    width: 200px !important;
+    height: 100px !important;
+    background: purple !important;
+    color: white !important;
+    font-size: 24px !important;
+    z-index: 2147483647 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
 .debug-test-global {
     position: absolute;
     top: 50px;
