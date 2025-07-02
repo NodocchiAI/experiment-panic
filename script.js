@@ -604,10 +604,10 @@ function simulateTerminalActivity() {
             `;
             terminalContent.appendChild(promptLine);
             
-            // Keep only last 12 lines
+            // Keep only last 20 lines (more space)
             const lines = terminalContent.querySelectorAll('.code-line');
-            if (lines.length > 12) {
-                for (let i = 0; i < lines.length - 12; i++) {
+            if (lines.length > 20) {
+                for (let i = 0; i < lines.length - 20; i++) {
                     lines[i].remove();
                 }
             }
