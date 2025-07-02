@@ -386,19 +386,20 @@ body {
 /* Simple Test - No complications */
 .simple-test {
     position: fixed;
-    top: 100px;
-    left: 100px;
-    width: 300px;
-    height: 100px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 200px;
     background: red;
     color: white;
-    font-size: 32px;
+    font-size: 48px;
     font-weight: bold;
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 99999;
-    border: 5px solid yellow;
+    border: 10px solid yellow;
 }
 
 .debug-test-global {
