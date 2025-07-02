@@ -1,0 +1,34 @@
+# Logs
+server.log
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Zone Identifier files (Windows security)
+*.Zone.Identifier
+
+# Node modules
+node_modules/
+anime-ui/
+
+# Backup files
+*.bak
+
+# Test files
+test.html
+
+# Old reference folder
+参考/
+
+# Development
+.vscode/
+*.tmp
+
+# Screenshots
+screenshot.*.png
+
+# Other
+squashfs-root/
+GLAUDE.md
