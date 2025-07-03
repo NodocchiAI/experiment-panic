@@ -363,6 +363,17 @@ body {
 /* Terminal Panel */
 .terminal-panel {
     grid-column: span 2;
+    background-image: 
+        url('assets/whiteblack2.jpg'),
+        url('assets/whiteblack4.jpg');
+    background-size: 
+        40% auto,
+        30% auto;
+    background-position: 
+        bottom left,
+        top right;
+    background-repeat: no-repeat;
+    background-blend-mode: overlay;
 }
 
 .terminal-content {
@@ -372,6 +383,9 @@ body {
     line-height: 1.6;
     min-height: 400px;
     max-height: 500px;
+    background: rgba(0, 0, 0, 0.9);
+    position: relative;
+    z-index: 2;
     overflow-y: auto;
 }
 
@@ -1205,114 +1219,6 @@ body {
     overflow: hidden;
 }
 
-.abstract-shapes {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    padding: 20px;
-}
-
-.shape {
-    position: absolute;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-}
-
-.shape-1 {
-    top: 20px;
-    left: 20px;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    animation: shapeRotate1 8s infinite linear;
-}
-
-.shape-2 {
-    top: 50px;
-    right: 30px;
-    width: 40px;
-    height: 80px;
-    background: linear-gradient(45deg, transparent 30%, rgba(0, 255, 255, 0.3) 50%, transparent 70%);
-    animation: shapeRotate2 12s infinite linear;
-}
-
-.shape-3 {
-    bottom: 40px;
-    left: 40px;
-    width: 0;
-    height: 0;
-    border-left: 25px solid transparent;
-    border-right: 25px solid transparent;
-    border-bottom: 43px solid rgba(255, 255, 255, 0.3);
-    animation: shapeRotate3 15s infinite linear;
-}
-
-@keyframes shapeRotate1 {
-    0% { transform: rotate(0deg) scale(1); }
-    50% { transform: rotate(180deg) scale(1.2); }
-    100% { transform: rotate(360deg) scale(1); }
-}
-
-@keyframes shapeRotate2 {
-    0% { transform: rotate(0deg) translateY(0); }
-    50% { transform: rotate(180deg) translateY(-10px); }
-    100% { transform: rotate(360deg) translateY(0); }
-}
-
-@keyframes shapeRotate3 {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-.barcode {
-    position: absolute;
-    top: 60%;
-    right: 20px;
-    width: 60px;
-    height: 100px;
-    background: repeating-linear-gradient(
-        90deg,
-        #ffffff 0px,
-        #ffffff 2px,
-        transparent 2px,
-        transparent 4px
-    );
-    opacity: 0.7;
-    animation: barcodeFlicker 3s infinite;
-}
-
-@keyframes barcodeFlicker {
-    0%, 85%, 100% { opacity: 0.7; }
-    90%, 95% { opacity: 0.3; }
-}
-
-.wireframe-cube {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
-    border: 1px solid #00ffff;
-    transform-style: preserve-3d;
-    animation: cubeRotate 10s infinite linear;
-}
-
-.wireframe-cube::before {
-    content: '';
-    position: absolute;
-    top: -10px;
-    left: -10px;
-    width: 50px;
-    height: 50px;
-    border: 1px solid #00ffff;
-    transform: rotateX(60deg) rotateY(45deg);
-}
-
-@keyframes cubeRotate {
-    0% { transform: rotateX(0deg) rotateY(0deg); }
-    100% { transform: rotateX(360deg) rotateY(360deg); }
-}
 
 .text-overlay {
     position: absolute;

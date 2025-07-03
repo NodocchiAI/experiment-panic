@@ -349,10 +349,10 @@ function showAnalysisView() {
             </div>
             <div class="analysis-waves" style="position: absolute; top: 60px; left: 20px; right: 20px; bottom: 80px;">
                 <div style="position: relative; width: 100%; height: 100%; border: 1px solid rgba(0,255,255,0.3); background: rgba(0,255,255,0.05);">
-                    <div style="position: absolute; top: 20%; left: 0; right: 0; height: 2px; background: #ff00ff; animation: waveMove1 3s ease-in-out infinite;"></div>
-                    <div style="position: absolute; top: 40%; left: 0; right: 0; height: 2px; background: #00ffff; animation: waveMove2 2.5s ease-in-out infinite;"></div>
-                    <div style="position: absolute; top: 60%; left: 0; right: 0; height: 2px; background: #ff00ff; animation: waveMove3 4s ease-in-out infinite;"></div>
-                    <div style="position: absolute; top: 80%; left: 0; right: 0; height: 2px; background: #00ffff; animation: waveMove4 3.5s ease-in-out infinite;"></div>
+                    <div style="position: absolute; top: 20%; left: 0; right: 0; height: 2px; background: #ffffff; animation: waveMove1 3s ease-in-out infinite;"></div>
+                    <div style="position: absolute; top: 40%; left: 0; right: 0; height: 2px; background: #ffffff; animation: waveMove2 2.5s ease-in-out infinite;"></div>
+                    <div style="position: absolute; top: 60%; left: 0; right: 0; height: 2px; background: #ffffff; animation: waveMove3 4s ease-in-out infinite;"></div>
+                    <div style="position: absolute; top: 80%; left: 0; right: 0; height: 2px; background: #ffffff; animation: waveMove4 3.5s ease-in-out infinite;"></div>
                 </div>
             </div>
             <div class="text-overlay">
@@ -434,7 +434,7 @@ function addNovelClickHandlers() {
         novel.addEventListener('click', () => {
             // Add selection effect
             novel.style.transform = 'translateX(10px)';
-            novel.style.boxShadow = '0 0 20px rgba(255, 0, 255, 0.5)';
+            novel.style.boxShadow = '0 0 20px rgba(255, 255, 255, 0.5)';
             
             setTimeout(() => {
                 novel.style.transform = '';
@@ -637,27 +637,7 @@ setTimeout(() => {
     document.body.style.opacity = '1';
 }, 100);
 
-// Floating graphics interaction
-document.addEventListener('click', (e) => {
-    // Create temporary glitch effect at click position
-    const glitchEffect = document.createElement('div');
-    glitchEffect.style.position = 'fixed';
-    glitchEffect.style.left = e.clientX + 'px';
-    glitchEffect.style.top = e.clientY + 'px';
-    glitchEffect.style.width = '20px';
-    glitchEffect.style.height = '20px';
-    glitchEffect.style.border = '1px solid #ff00ff';
-    glitchEffect.style.borderRadius = '50%';
-    glitchEffect.style.pointerEvents = 'none';
-    glitchEffect.style.zIndex = '9998';
-    glitchEffect.style.animation = 'float1 1s ease-out forwards';
-    
-    document.body.appendChild(glitchEffect);
-    
-    setTimeout(() => {
-        glitchEffect.remove();
-    }, 1000);
-});
+// Click interactions removed for clean white-black aesthetic
 
 // Konami code easter egg
 let konamiCode = [];
