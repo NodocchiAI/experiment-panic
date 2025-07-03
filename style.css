@@ -364,14 +364,29 @@ body {
 .terminal-panel {
     grid-column: span 2;
     background-image: 
+        url('assets/whiteblack1.jpg'),
         url('assets/whiteblack2.jpg'),
-        url('assets/whiteblack4.jpg');
+        url('assets/whiteblack3.jpg'),
+        url('assets/whiteblack4.jpg'),
+        url('assets/whiteblack5.jpg'),
+        url('assets/whiteblack6.jpg'),
+        url('assets/whiteblack7.jpg');
     background-size: 
-        40% auto,
-        30% auto;
+        25% auto,
+        20% auto,
+        18% auto,
+        22% auto,
+        15% auto,
+        19% auto,
+        16% auto;
     background-position: 
+        top left,
+        top right,
+        center left,
+        bottom right,
+        center center,
         bottom left,
-        top right;
+        top center;
     background-repeat: no-repeat;
     background-blend-mode: overlay;
 }
@@ -383,7 +398,7 @@ body {
     line-height: 1.6;
     min-height: 400px;
     max-height: 500px;
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.7);
     position: relative;
     z-index: 2;
     overflow-y: auto;
