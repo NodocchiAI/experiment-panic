@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONSCIOUSNESS FRAGMENTATION</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@400;700&family=VT323&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Anonymous Pro', monospace;
+            background: #000000;
+            color: #ffffff;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        .fragmented-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: #000000;
+        }
+        
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-rows: repeat(4, 200px);
+            gap: 2px;
+            padding: 20px;
+            min-height: 100vh;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .grid-cell {
+            background: #000000;
+            border: 1px solid rgba(139, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .grid-cell:hover {
+            border-color: rgba(139, 0, 0, 0.8);
+            box-shadow: 0 0 20px rgba(139, 0, 0, 0.4);
+            transform: scale(1.02);
+        }
+        
+        .cell-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(1) contrast(1.2) brightness(0.8);
+            transition: all 0.3s ease;
+        }
+        
+        .cell-image:hover {
+            filter: grayscale(0.3) contrast(1.5) brightness(1.1);
+            transform: scale(1.1);
+        }
+        
+        .cell-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            font-family: 'VT323', monospace;
+            font-size: 12px;
+            color: #8b0000;
+            text-align: center;
+            text-shadow: 0 0 10px #8b0000;
+        }
+        
+        .grid-cell:hover .cell-overlay {
+            opacity: 1;
+        }
+        
+        .consciousness-header {
+            grid-column: 1 / -1;
+            grid-row: 1;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            border: 2px solid rgba(139, 0, 0, 0.5);
+        }
+        
+        .header-title {
+            font-family: 'VT323', monospace;
+            font-size: 28px;
+            color: #8b0000;
+            text-shadow: 0 0 20px #8b0000;
+            margin-bottom: 10px;
+            animation: glitchFlicker 5s ease-in-out infinite;
+        }
+        
+        .header-subtitle {
+            font-size: 12px;
+            color: #666666;
+            letter-spacing: 2px;
+        }
+        
+        .empty-void {
+            background: radial-gradient(circle at center, rgba(139, 0, 0, 0.1) 0%, transparent 70%);
+            animation: voidPulse 8s ease-in-out infinite;
+        }
+        
+        .corrupted-cell {
+            background: repeating-linear-gradient(
+                45deg,
+                rgba(139, 0, 0, 0.1),
+                rgba(139, 0, 0, 0.1) 10px,
+                transparent 10px,
+                transparent 20px
+            );
+            animation: corruption 3s ease-in-out infinite;
+        }
+        
+        .navigation-cell {
+            background: rgba(139, 0, 0, 0.2);
+            border: 2px solid rgba(139, 0, 0, 0.6);
+        }
+        
+        .mysterious-text {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: #444444;
+            opacity: 0.6;
+            z-index: 100;
+            animation: textFade 12s ease-in-out infinite;
+        }
+        
+        @keyframes glitchFlicker {
+            0%, 90%, 100% { 
+                opacity: 1;
+                transform: translate(0);
+            }
+            95% { 
+                opacity: 0.7;
+                transform: translate(-1px, 1px);
+            }
+            97% { 
+                opacity: 0.9;
+                transform: translate(1px, -1px);
+            }
+        }
+        
+        @keyframes voidPulse {
+            0%, 100% { 
+                background: radial-gradient(circle at center, rgba(139, 0, 0, 0.1) 0%, transparent 70%);
+            }
+            50% { 
+                background: radial-gradient(circle at center, rgba(139, 0, 0, 0.3) 0%, transparent 50%);
+            }
+        }
+        
+        @keyframes corruption {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+        
+        @keyframes textFade {
+            0%, 80% { opacity: 0.4; }
+            10%, 70% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="fragmented-background"></div>
+    
+    <div class="grid-container">
+        <!-- Header spanning full width -->
+        <div class="consciousness-header">
+            <h1 class="header-title">CONSCIOUSNESS FRAGMENTATION</h1>
+            <p class="header-subtitle">fragmenting identity across digital dimensions</p>
+        </div>
+        
+        <!-- Grid cells will be populated by JavaScript -->
+    </div>
+    
+    <div class="mysterious-text">
+        "Each fragment contains the whole, each pixel holds infinite consciousness..."<br>
+        ~ Infek bin Laden ~
+    </div>
+    
+    <script>
+        // Available assets for random selection
+        const assetImages = [
+            'assets/434abd472fb93950e2f31718ae8a0214.jpg',
+            'assets/53d556c8c632f5f710206f2ea661daa7.jpg',
+            'assets/5bc7e2da68426270347050a435314ac4.jpg',
+            'assets/6105ba003b1963af2d251c37e493a0f9.jpg',
+            'assets/6133ddc44dea98aa5cd68a48f1f8a755.jpg',
+            'assets/84250909c426271deaaa3f848075a351.jpg',
+            'assets/8523cd3c178aa0fcf04cf99c0988a3e8.jpg',
+            'assets/8be11e3f4b25ec70b0b9a82701d687ae.jpg',
+            'assets/9da70b468455b190dc2de84256063ff1.jpg',
+            'assets/a0876d40767fb0274aab89c122ebb2ea.jpg',
+            'assets/bf5a138a99a927b2d9591f9692581fd8.jpg',
+            'assets/cb1adbf2c8f8e152c96ccd8c2fc0ffb8.jpg',
+            'assets/cursed1.jpg',
+            'assets/cursed2.jpg',
+            'assets/cursed3.jpg',
+            'assets/cursed4.jpg',
+            'assets/cursed6.jpg',
+            'assets/cursed7.jpg',
+            'assets/cursed8.jpg',
+            'assets/cursed9.jpg',
+            'assets/d88631dd3477c5e431650ca7bccdfc90.jpg',
+            'assets/e6231b056e2ac44621690f27c19d6ef3.jpg',
+            'assets/eb2653e4bdbf32dab3cba05fc01dc224.jpg',
+            'assets/whiteblack1.jpg',
+            'assets/whiteblack2.jpg',
+            'assets/whiteblack3.jpg',
+            'assets/whiteblack4.jpg',
+            'assets/whiteblack5.jpg',
+            'assets/whiteblack6.jpg',
+            'assets/whiteblack7.jpg'
+        ];
+        
+        const gifAssets = [
+            'assets/63fc34b9a77a30a03340e2e79352dd71.gif',
+            'assets/afc99c543008e995ae8cf5fb3a05f89e.gif',
+            'assets/cursed5.gif',
+            'assets/ec9eac7808d6d0348e1eea2b8165f2db.gif',
+            'assets/test_gif.gif'
+        ];
+        
+        const fragmentTexts = [
+            'IDENTITY_LOST',
+            'WHO_AM_I?',
+            'DIGITAL_SOUL',
+            'CONSCIOUSNESS.EXE',
+            'MEMORY_CORRUPT',
+            'SELF.NULL',
+            'EXISTENCE_ERROR',
+            'REALITY.DLL',
+            'MIND_OVERFLOW',
+            'PERSONA_FRAGMENTED',
+            'EGO_DISSOLVED',
+            'AWARENESS.TXT',
+            'BEING_UNDEFINED',
+            'SOUL_SEGFAULT'
+        ];
+        
+        const navigationCells = [
+            { text: 'RETURN_TO_MEDITATION', url: 'meditation.html' },
+            { text: 'ENTER_TRANSFORMATION', url: 'transformation.html' },
+            { text: 'BACK_TO_CONTENTS', url: 'contents.html' },
+            { text: 'MAIN_INTERFACE', url: 'index.html' }
+        ];
+        
+        function getRandomAsset() {
+            const allAssets = [...assetImages, ...gifAssets];
+            return allAssets[Math.floor(Math.random() * allAssets.length)];
+        }
+        
+        function getRandomFragmentText() {
+            return fragmentTexts[Math.floor(Math.random() * fragmentTexts.length)];
+        }
+        
+        function createGridCell(isNavigation = false, navData = null) {
+            const cell = document.createElement('div');
+            cell.className = 'grid-cell';
+            
+            if (isNavigation && navData) {
+                cell.classList.add('navigation-cell');
+                cell.innerHTML = `
+                    <div class="cell-overlay" style="opacity: 1;">
+                        ${navData.text.replace('_', '<br>')}
+                    </div>
+                `;
+                cell.addEventListener('click', () => {
+                    // Glitch effect before navigation
+                    document.body.style.filter = 'invert(1) contrast(3) brightness(0.3)';
+                    setTimeout(() => {
+                        window.location.href = navData.url;
+                    }, 200);
+                });
+            } else {
+                const randomChoice = Math.random();
+                
+                if (randomChoice < 0.6) {
+                    // Image cell
+                    const img = document.createElement('img');
+                    img.className = 'cell-image';
+                    img.src = getRandomAsset();
+                    img.onerror = () => {
+                        // If image fails to load, create corrupted cell
+                        cell.classList.add('corrupted-cell');
+                        cell.innerHTML = `
+                            <div class="cell-overlay" style="opacity: 1;">
+                                IMAGE_CORRUPTED<br>404_SOUL_NOT_FOUND
+                            </div>
+                        `;
+                    };
+                    
+                    const overlay = document.createElement('div');
+                    overlay.className = 'cell-overlay';
+                    overlay.textContent = getRandomFragmentText();
+                    
+                    cell.appendChild(img);
+                    cell.appendChild(overlay);
+                } else if (randomChoice < 0.8) {
+                    // Corrupted cell
+                    cell.classList.add('corrupted-cell');
+                    cell.innerHTML = `
+                        <div class="cell-overlay" style="opacity: 1;">
+                            ${getRandomFragmentText()}
+                        </div>
+                    `;
+                } else {
+                    // Empty void cell
+                    cell.classList.add('empty-void');
+                    cell.innerHTML = `
+                        <div class="cell-overlay">
+                            VOID_DETECTED<br>∅
+                        </div>
+                    `;
+                }
+                
+                // Add random click behavior
+                cell.addEventListener('click', () => {
+                    if (Math.random() < 0.3) {
+                        // Random glitch effect
+                        cell.style.filter = 'invert(1) hue-rotate(180deg)';
+                        cell.querySelector('.cell-overlay').textContent = 'CORRUPTED_MEMORY';
+                        
+                        setTimeout(() => {
+                            cell.style.filter = '';
+                            cell.querySelector('.cell-overlay').textContent = getRandomFragmentText();
+                        }, 1000);
+                    }
+                });
+            }
+            
+            return cell;
+        }
+        
+        function populateGrid() {
+            const gridContainer = document.querySelector('.grid-container');
+            const totalCells = 6 * 3; // 6 columns, 3 remaining rows after header
+            
+            // Add navigation cells randomly
+            const navPositions = new Set();
+            while (navPositions.size < 4) {
+                navPositions.add(Math.floor(Math.random() * totalCells));
+            }
+            
+            let navIndex = 0;
+            for (let i = 0; i < totalCells; i++) {
+                if (navPositions.has(i)) {
+                    gridContainer.appendChild(createGridCell(true, navigationCells[navIndex]));
+                    navIndex++;
+                } else {
+                    gridContainer.appendChild(createGridCell());
+                }
+            }
+        }
+        
+        // Random corruption effects
+        function randomCorruption() {
+            const cells = document.querySelectorAll('.grid-cell:not(.navigation-cell)');
+            const randomCell = cells[Math.floor(Math.random() * cells.length)];
+            
+            if (randomCell && Math.random() < 0.4) {
+                const img = randomCell.querySelector('.cell-image');
+                if (img) {
+                    img.src = getRandomAsset();
+                }
+                
+                const overlay = randomCell.querySelector('.cell-overlay');
+                if (overlay && !overlay.style.opacity) {
+                    overlay.textContent = getRandomFragmentText();
+                }
+            }
+        }
+        
+        // Background corruption effect
+        function corruptBackground() {
+            const background = document.querySelector('.fragmented-background');
+            const randomAsset = getRandomAsset();
+            
+            background.style.backgroundImage = `url('${randomAsset}')`;
+            background.style.backgroundSize = 'cover';
+            background.style.backgroundPosition = 'center';
+            background.style.opacity = '0.1';
+            background.style.filter = 'grayscale(1) contrast(2)';
+            
+            setTimeout(() => {
+                background.style.backgroundImage = '';
+            }, 3000);
+        }
+        
+        // Initialize
+        populateGrid();
+        
+        // Set intervals for dynamic effects
+        setInterval(randomCorruption, 5000 + Math.random() * 10000);
+        setInterval(corruptBackground, 15000 + Math.random() * 20000);
+        
+        // Mouse trail effect
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            document.querySelector('.mysterious-text').style.transform = 
+                `translate(${x * 10}px, ${y * 5}px)`;
+            document.querySelector('.mysterious-text').style.opacity = 
+                0.4 + (x * y * 0.4);
+        });
+    </script>
+</body>
+</html>

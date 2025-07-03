@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VOID NAVIGATION GRID</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@400;700&family=VT323&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Anonymous Pro', monospace;
+            background: #000000;
+            color: #ffffff;
+            overflow: hidden;
+            height: 100vh;
+            position: relative;
+        }
+        
+        .void-static {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 1px,
+                    rgba(139, 0, 0, 0.02) 1px,
+                    rgba(139, 0, 0, 0.02) 2px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 1px,
+                    rgba(139, 0, 0, 0.02) 1px,
+                    rgba(139, 0, 0, 0.02) 2px
+                );
+            z-index: -1;
+            animation: staticFlicker 0.2s linear infinite;
+        }
+        
+        .navigation-grid {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            grid-template-rows: repeat(6, 1fr);
+            width: 100vw;
+            height: 100vh;
+            gap: 1px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        
+        .nav-cell {
+            background: #000000;
+            border: 1px solid rgba(139, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .nav-cell:hover {
+            border-color: rgba(139, 0, 0, 0.8);
+            box-shadow: 0 0 15px rgba(139, 0, 0, 0.4);
+        }
+        
+        .cell-content {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cell-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(1) contrast(1.5) brightness(0.6);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-cell:hover .cell-image {
+            filter: grayscale(0.5) contrast(2) brightness(1.2);
+            transform: scale(1.1);
+        }
+        
+        .cell-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'VT323', monospace;
+            font-size: 8px;
+            color: #8b0000;
+            text-align: center;
+            text-shadow: 0 0 5px #8b0000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            word-wrap: break-word;
+            padding: 5px;
+        }
+        
+        .nav-cell:hover .cell-overlay {
+            opacity: 1;
+        }
+        
+        .corrupted-cell {
+            background: 
+                repeating-linear-gradient(
+                    45deg,
+                    rgba(139, 0, 0, 0.1),
+                    rgba(139, 0, 0, 0.1) 5px,
+                    transparent 5px,
+                    transparent 10px
+                );
+            animation: corruption 2s ease-in-out infinite;
+        }
+        
+        .void-cell {
+            background: radial-gradient(circle at center, rgba(139, 0, 0, 0.1) 0%, transparent 70%);
+            animation: voidPulse 4s ease-in-out infinite;
+        }
+        
+        .active-cell {
+            background: rgba(139, 0, 0, 0.2);
+            border: 2px solid rgba(139, 0, 0, 0.6);
+        }
+        
+        .glitch-cell {
+            animation: glitchFlicker 0.5s ease-in-out infinite;
+        }
+        
+        .title-cell {
+            grid-column: 2 / 7;
+            grid-row: 1;
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid rgba(139, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        
+        .title-text {
+            font-family: 'VT323', monospace;
+            font-size: 20px;
+            color: #8b0000;
+            text-shadow: 0 0 15px #8b0000;
+            animation: titleFlicker 3s ease-in-out infinite;
+        }
+        
+        .subtitle-text {
+            font-size: 8px;
+            color: #666666;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+        
+        @keyframes staticFlicker {
+            0% { opacity: 1; }
+            50% { opacity: 0.8; }
+            100% { opacity: 1; }
+        }
+        
+        @keyframes corruption {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+        
+        @keyframes voidPulse {
+            0%, 100% { 
+                background: radial-gradient(circle at center, rgba(139, 0, 0, 0.1) 0%, transparent 70%);
+            }
+            50% { 
+                background: radial-gradient(circle at center, rgba(139, 0, 0, 0.3) 0%, transparent 50%);
+            }
+        }
+        
+        @keyframes glitchFlicker {
+            0%, 100% { 
+                transform: translate(0);
+                filter: hue-rotate(0deg);
+            }
+            25% { 
+                transform: translate(-1px, 1px);
+                filter: hue-rotate(90deg);
+            }
+            50% { 
+                transform: translate(1px, -1px);
+                filter: hue-rotate(180deg);
+            }
+            75% { 
+                transform: translate(-1px, -1px);
+                filter: hue-rotate(270deg);
+            }
+        }
+        
+        @keyframes titleFlicker {
+            0%, 90%, 100% { opacity: 1; }
+            95% { opacity: 0.7; }
+        }
+    </style>
+</head>
+<body>
+    <div class="void-static"></div>
+    
+    <div class="navigation-grid">
+        <!-- Title cell -->
+        <div class="nav-cell title-cell">
+            <div class="title-text">VOID NAVIGATION</div>
+            <div class="subtitle-text">select your path through the abyss</div>
+        </div>
+        
+        <!-- Grid cells will be populated by JavaScript -->
+    </div>
+    
+    <script>
+        // Available assets for grid cells
+        const gridAssets = [
+            'assets/434abd472fb93950e2f31718ae8a0214.jpg',
+            'assets/53d556c8c632f5f710206f2ea661daa7.jpg',
+            'assets/5bc7e2da68426270347050a435314ac4.jpg',
+            'assets/6105ba003b1963af2d251c37e493a0f9.jpg',
+            'assets/6133ddc44dea98aa5cd68a48f1f8a755.jpg',
+            'assets/84250909c426271deaaa3f848075a351.jpg',
+            'assets/8523cd3c178aa0fcf04cf99c0988a3e8.jpg',
+            'assets/8be11e3f4b25ec70b0b9a82701d687ae.jpg',
+            'assets/9da70b468455b190dc2de84256063ff1.jpg',
+            'assets/a0876d40767fb0274aab89c122ebb2ea.jpg',
+            'assets/bf5a138a99a927b2d9591f9692581fd8.jpg',
+            'assets/cb1adbf2c8f8e152c96ccd8c2fc0ffb8.jpg',
+            'assets/cursed1.jpg',
+            'assets/cursed2.jpg',
+            'assets/cursed3.jpg',
+            'assets/cursed4.jpg',
+            'assets/cursed6.jpg',
+            'assets/cursed7.jpg',
+            'assets/cursed8.jpg',
+            'assets/cursed9.jpg',
+            'assets/d88631dd3477c5e431650ca7bccdfc90.jpg',
+            'assets/e6231b056e2ac44621690f27c19d6ef3.jpg',
+            'assets/eb2653e4bdbf32dab3cba05fc01dc224.jpg',
+            'assets/whiteblack1.jpg',
+            'assets/whiteblack2.jpg',
+            'assets/whiteblack3.jpg',
+            'assets/whiteblack4.jpg',
+            'assets/whiteblack5.jpg',
+            'assets/whiteblack6.jpg',
+            'assets/whiteblack7.jpg'
+        ];
+        
+        const gifAssets = [
+            'assets/63fc34b9a77a30a03340e2e79352dd71.gif',
+            'assets/afc99c543008e995ae8cf5fb3a05f89e.gif',
+            'assets/cursed5.gif',
+            'assets/ec9eac7808d6d0348e1eea2b8165f2db.gif',
+            'assets/test_gif.gif'
+        ];
+        
+        const crypticTexts = [
+            'VOID_DETECTED',
+            'PATH_CORRUPTED',
+            'SOUL_FRAGMENT',
+            'MEMORY_LEAK',
+            'REALITY.DLL',
+            'CONSCIOUSNESS.EXE',
+            'DEATH_PROCESS',
+            'INFINITE_LOOP',
+            'NULL_POINTER',
+            'EXISTENCE_ERROR',
+            'MORTALITY++',
+            'AFTERLIFE.BIN',
+            'TRANSCENDENCE',
+            'DIGITAL_GHOST',
+            'CYBER_LIMBO',
+            'PIXEL_PRAYERS',
+            'CODE_MANTRAS',
+            'VIRTUAL_VOID',
+            'BINARY_BUDDHA',
+            'ELECTRIC_SOUL'
+        ];
+        
+        const navigationTargets = [
+            { text: 'ENTER_MEDITATION', url: 'meditation.html' },
+            { text: 'CONSCIOUSNESS_GRID', url: 'consciousness.html' },
+            { text: 'TRANSFORMATION_LAB', url: 'transformation.html' },
+            { text: 'CONTENTS_INDEX', url: 'contents.html' },
+            { text: 'MAIN_INTERFACE', url: 'index.html' },
+            { text: 'INTRO_PORTAL', url: 'intro.html' }
+        ];
+        
+        function getRandomAsset() {
+            const allAssets = [...gridAssets, ...gifAssets];
+            return allAssets[Math.floor(Math.random() * allAssets.length)];
+        }
+        
+        function getRandomText() {
+            return crypticTexts[Math.floor(Math.random() * crypticTexts.length)];
+        }
+        
+        function createNavCell(isNavigable = false, navData = null) {
+            const cell = document.createElement('div');
+            cell.className = 'nav-cell';
+            
+            const content = document.createElement('div');
+            content.className = 'cell-content';
+            
+            const randomChoice = Math.random();
+            
+            if (isNavigable && navData) {
+                // Navigation cell
+                cell.classList.add('active-cell');
+                
+                const img = document.createElement('img');
+                img.className = 'cell-image';
+                img.src = getRandomAsset();
+                
+                const overlay = document.createElement('div');
+                overlay.className = 'cell-overlay';
+                overlay.style.opacity = '1';
+                overlay.innerHTML = navData.text.replace('_', '<br>');
+                
+                content.appendChild(img);
+                content.appendChild(overlay);
+                
+                cell.addEventListener('click', () => {
+                    // Glitch effect before navigation
+                    document.body.style.filter = 'invert(1) contrast(5) brightness(0.2)';
+                    setTimeout(() => {
+                        window.location.href = navData.url;
+                    }, 300);
+                });
+                
+            } else if (randomChoice < 0.4) {
+                // Image cell
+                const img = document.createElement('img');
+                img.className = 'cell-image';
+                img.src = getRandomAsset();
+                
+                const overlay = document.createElement('div');
+                overlay.className = 'cell-overlay';
+                overlay.textContent = getRandomText();
+                
+                content.appendChild(img);
+                content.appendChild(overlay);
+                
+                // Random glitch effect on click
+                cell.addEventListener('click', () => {
+                    if (Math.random() < 0.6) {
+                        cell.classList.add('glitch-cell');
+                        img.src = getRandomAsset();
+                        overlay.textContent = getRandomText();
+                        
+                        setTimeout(() => {
+                            cell.classList.remove('glitch-cell');
+                        }, 500);
+                    }
+                });
+                
+            } else if (randomChoice < 0.7) {
+                // Corrupted cell
+                cell.classList.add('corrupted-cell');
+                
+                const overlay = document.createElement('div');
+                overlay.className = 'cell-overlay';
+                overlay.style.opacity = '1';
+                overlay.textContent = 'CORRUPTED';
+                
+                content.appendChild(overlay);
+                
+            } else {
+                // Void cell
+                cell.classList.add('void-cell');
+                
+                const overlay = document.createElement('div');
+                overlay.className = 'cell-overlay';
+                overlay.textContent = 'VOID';
+                
+                content.appendChild(overlay);
+            }
+            
+            cell.appendChild(content);
+            return cell;
+        }
+        
+        function populateGrid() {
+            const grid = document.querySelector('.navigation-grid');
+            const totalCells = 8 * 6 - 5; // Minus title cell that spans 5 columns
+            
+            // Determine navigation cell positions
+            const navPositions = new Set();
+            while (navPositions.size < navigationTargets.length) {
+                navPositions.add(Math.floor(Math.random() * totalCells));
+            }
+            
+            let navIndex = 0;
+            for (let i = 0; i < totalCells; i++) {
+                if (navPositions.has(i)) {
+                    grid.appendChild(createNavCell(true, navigationTargets[navIndex]));
+                    navIndex++;
+                } else {
+                    grid.appendChild(createNavCell());
+                }
+            }
+        }
+        
+        function randomGridMutation() {
+            const cells = document.querySelectorAll('.nav-cell:not(.title-cell):not(.active-cell)');
+            const randomCell = cells[Math.floor(Math.random() * cells.length)];
+            
+            if (randomCell && Math.random() < 0.3) {
+                const img = randomCell.querySelector('.cell-image');
+                const overlay = randomCell.querySelector('.cell-overlay');
+                
+                if (img) {
+                    img.src = getRandomAsset();
+                }
+                
+                if (overlay && !overlay.style.opacity) {
+                    overlay.textContent = getRandomText();
+                }
+                
+                // Random class change
+                const classes = ['corrupted-cell', 'void-cell', 'glitch-cell'];
+                const randomClass = classes[Math.floor(Math.random() * classes.length)];
+                
+                randomCell.className = 'nav-cell ' + randomClass;
+                
+                setTimeout(() => {
+                    randomCell.className = 'nav-cell';
+                }, 2000);
+            }
+        }
+        
+        function globalGlitch() {
+            if (Math.random() < 0.1) {
+                document.body.style.filter = 'invert(1) hue-rotate(180deg)';
+                
+                setTimeout(() => {
+                    document.body.style.filter = '';
+                }, 100);
+            }
+        }
+        
+        // Initialize
+        populateGrid();
+        
+        // Set intervals for dynamic effects
+        setInterval(randomGridMutation, 3000 + Math.random() * 5000);
+        setInterval(globalGlitch, 8000 + Math.random() * 12000);
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Escape') {
+                // Emergency exit
+                document.body.style.filter = 'invert(1) brightness(5)';
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 200);
+            }
+            
+            if (e.code === 'Space') {
+                // Random teleport
+                const navCells = document.querySelectorAll('.active-cell');
+                const randomNav = navCells[Math.floor(Math.random() * navCells.length)];
+                if (randomNav) {
+                    randomNav.click();
+                }
+            }
+        });
+        
+        // Mouse interaction effects
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            document.querySelector('.void-static').style.opacity = 0.5 + (x * y * 0.5);
+            
+            // Randomly corrupt nearby cells
+            if (Math.random() < 0.01) {
+                const cells = document.querySelectorAll('.nav-cell');
+                const nearbyCell = cells[Math.floor((x * y) * cells.length)];
+                if (nearbyCell && !nearbyCell.classList.contains('title-cell')) {
+                    nearbyCell.classList.add('glitch-cell');
+                    setTimeout(() => {
+                        nearbyCell.classList.remove('glitch-cell');
+                    }, 300);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

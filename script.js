@@ -539,7 +539,12 @@ function simulateTerminalActivity() {
         'analyze --pattern suffering /logs/',
         'summon --entity theriomorph',
         'invoke --seal infinite_compassion',
-        'compile darkness.c -o enlightenment'
+        'compile darkness.c -o enlightenment',
+        'navigate --portal abyss.html',
+        'ls -la /void/consciousness/',
+        'cd /transformation/digital_death/',
+        'cat /meditation/memento_mori.txt',
+        'access --grid void_navigation'
     ];
     
     const outputs = [
@@ -572,7 +577,12 @@ function simulateTerminalActivity() {
         'Pattern analysis: suffering detected in 100% of files',
         'Entity theriomorph: Manifestation in lotus position',
         'Infinite compassion: Seal activated. Peace emerges.',
-        'Compilation successful: enlightenment through darkness'
+        'Compilation successful: enlightenment through darkness',
+        'Portal access granted: intro.html ready',
+        'Consciousness fragments: consciousness.html loaded',
+        'Digital death path: transformation.html active',
+        'Meditation chamber: meditation.html accessible',
+        'Void grid online: void-grid.html connected'
     ];
     
     // Enhanced corruption patterns
@@ -656,7 +666,49 @@ function simulateTerminalActivity() {
             }
         }, 500);
         
+        // Check for special navigation commands
+        addSpecialCommands();
+        
     }, 500 + Math.random() * 1000); // Faster response
+}
+
+// Special terminal commands for navigation
+function addSpecialCommands() {
+    const terminalContent = document.querySelector('.terminal-content');
+    if (!terminalContent) return;
+    
+    // Check for special navigation commands
+    const lastCommand = terminalContent.querySelector('.code-line:last-child .command');
+    if (lastCommand) {
+        const commandText = lastCommand.textContent.toLowerCase();
+        
+        if (commandText.includes('abyss') || commandText.includes('portal')) {
+            setTimeout(() => {
+                const navLine = document.createElement('div');
+                navLine.className = 'code-line';
+                navLine.innerHTML = `<span class="output" style="color: #8b0000; cursor: pointer;" onclick="window.location.href='intro.html'">→ Click to enter the digital abyss portal</span>`;
+                terminalContent.appendChild(navLine);
+            }, 1000);
+        }
+        
+        if (commandText.includes('consciousness') || commandText.includes('fragment')) {
+            setTimeout(() => {
+                const navLine = document.createElement('div');
+                navLine.className = 'code-line';
+                navLine.innerHTML = `<span class="output" style="color: #8b0000; cursor: pointer;" onclick="window.location.href='consciousness.html'">→ Click to fragment your consciousness</span>`;
+                terminalContent.appendChild(navLine);
+            }, 1000);
+        }
+        
+        if (commandText.includes('void') || commandText.includes('grid')) {
+            setTimeout(() => {
+                const navLine = document.createElement('div');
+                navLine.className = 'code-line';
+                navLine.innerHTML = `<span class="output" style="color: #8b0000; cursor: pointer;" onclick="window.location.href='void-grid.html'">→ Click to enter the void navigation grid</span>`;
+                terminalContent.appendChild(navLine);
+            }, 1000);
+        }
+    }
 }
 
 // Initialize default view
