@@ -711,8 +711,246 @@ function addSpecialCommands() {
     }
 }
 
+// Horror Grid System with Non-Repeating Images
+const allAssetImages = [
+    'assets/434abd472fb93950e2f31718ae8a0214.jpg',
+    'assets/53d556c8c632f5f710206f2ea661daa7.jpg',
+    'assets/5bc7e2da68426270347050a435314ac4.jpg',
+    'assets/6105ba003b1963af2d251c37e493a0f9.jpg',
+    'assets/6133ddc44dea98aa5cd68a48f1f8a755.jpg',
+    'assets/84250909c426271deaaa3f848075a351.jpg',
+    'assets/8523cd3c178aa0fcf04cf99c0988a3e8.jpg',
+    'assets/8be11e3f4b25ec70b0b9a82701d687ae.jpg',
+    'assets/9da70b468455b190dc2de84256063ff1.jpg',
+    'assets/a0876d40767fb0274aab89c122ebb2ea.jpg',
+    'assets/bf5a138a99a927b2d9591f9692581fd8.jpg',
+    'assets/cb1adbf2c8f8e152c96ccd8c2fc0ffb8.jpg',
+    'assets/cursed1.jpg',
+    'assets/cursed2.jpg',
+    'assets/cursed3.jpg',
+    'assets/cursed4.jpg',
+    'assets/cursed6.jpg',
+    'assets/cursed7.jpg',
+    'assets/cursed8.jpg',
+    'assets/cursed9.jpg',
+    'assets/d88631dd3477c5e431650ca7bccdfc90.jpg',
+    'assets/e6231b056e2ac44621690f27c19d6ef3.jpg',
+    'assets/eb2653e4bdbf32dab3cba05fc01dc224.jpg',
+    'assets/whiteblack1.jpg',
+    'assets/whiteblack2.jpg',
+    'assets/whiteblack3.jpg',
+    'assets/whiteblack4.jpg',
+    'assets/whiteblack5.jpg',
+    'assets/whiteblack6.jpg',
+    'assets/whiteblack7.jpg',
+    'assets/sanmple1.jpg',
+    'assets/sample2.jpg',
+    'assets/sample3.jpg',
+    'assets/sample4.jpg',
+    'assets/sample5.jpg',
+    'assets/sample6.jpg',
+    'assets/sample7.jpg',
+    'assets/sample8.jpg',
+    'assets/sample9.jpg',
+    'assets/sample10.jpg'
+];
+
+const horrorTexts = [
+    'DEATH.EXE',
+    'SOUL_CORRUPT',
+    'VOID_DETECTED',
+    'HELL_GATES',
+    'NIGHTMARE.DLL',
+    'PANIC_MODE',
+    'REALITY_ERROR',
+    'DIGITAL_GHOST',
+    'MEMORY_LEAK',
+    'CONSCIOUSNESS.BIN',
+    'INFINITE_LOOP',
+    'SYSTEM_CORRUPT',
+    'NULL_POINTER',
+    'STACK_OVERFLOW',
+    'SEGFAULT',
+    'BUFFER_UNDERRUN',
+    'ACCESS_DENIED',
+    'FATAL_ERROR',
+    'CORE_DUMP',
+    'PROCESS_TERMINATED',
+    'SIGNAL_KILL',
+    'EXCEPTION_THROWN',
+    'MEMORY_VIOLATION',
+    'STACK_SMASH',
+    'HEAP_CORRUPTION',
+    'RACE_CONDITION',
+    'DEADLOCK_DETECTED',
+    'ZOMBIE_PROCESS',
+    'ORPHAN_THREAD',
+    'RESOURCE_LEAK'
+];
+
+let usedImages = new Set();
+
+function getUniqueRandomImage() {
+    // Reset if all images have been used
+    if (usedImages.size >= allAssetImages.length) {
+        usedImages.clear();
+    }
+    
+    let availableImages = allAssetImages.filter(img => !usedImages.has(img));
+    const randomImage = availableImages[Math.floor(Math.random() * availableImages.length)];
+    usedImages.add(randomImage);
+    return randomImage;
+}
+
+function getRandomHorrorText() {
+    return horrorTexts[Math.floor(Math.random() * horrorTexts.length)];
+}
+
+function createHorrorCell(isSpecial = false, specialData = null) {
+    const cell = document.createElement('div');
+    cell.className = 'horror-cell';
+    
+    if (isSpecial && specialData) {
+        cell.classList.add('horror-active');
+        cell.innerHTML = `
+            <div class="horror-cell-overlay" style="opacity: 1;">
+                ${specialData.text}
+            </div>
+        `;
+        cell.addEventListener('click', () => {
+            document.body.style.filter = 'invert(1) contrast(3) brightness(0.2)';
+            setTimeout(() => {
+                window.location.href = specialData.url;
+            }, 200);
+        });
+    } else {
+        const randomChoice = Math.random();
+        
+        if (randomChoice < 0.7) {
+            // Image cell
+            const img = document.createElement('img');
+            img.className = 'horror-cell-image';
+            img.src = getUniqueRandomImage();
+            img.onerror = () => {
+                cell.classList.add('horror-corrupted');
+                cell.innerHTML = `
+                    <div class="horror-cell-overlay" style="opacity: 1;">
+                        404_ERROR
+                    </div>
+                `;
+            };
+            
+            const overlay = document.createElement('div');
+            overlay.className = 'horror-cell-overlay';
+            overlay.textContent = getRandomHorrorText();
+            
+            cell.appendChild(img);
+            cell.appendChild(overlay);
+        } else if (randomChoice < 0.9) {
+            // Corrupted cell
+            cell.classList.add('horror-corrupted');
+            cell.innerHTML = `
+                <div class="horror-cell-overlay" style="opacity: 1;">
+                    ${getRandomHorrorText()}
+                </div>
+            `;
+        } else {
+            // Void cell
+            cell.classList.add('horror-void');
+            cell.innerHTML = `
+                <div class="horror-cell-overlay">
+                    VOID
+                </div>
+            `;
+        }
+        
+        // Add random click effects
+        cell.addEventListener('click', () => {
+            if (Math.random() < 0.4) {
+                const img = cell.querySelector('.horror-cell-image');
+                const overlay = cell.querySelector('.horror-cell-overlay');
+                
+                if (img) {
+                    img.src = getUniqueRandomImage();
+                }
+                if (overlay && !overlay.style.opacity) {
+                    overlay.textContent = getRandomHorrorText();
+                }
+                
+                cell.style.filter = 'invert(1) hue-rotate(180deg)';
+                setTimeout(() => {
+                    cell.style.filter = '';
+                }, 300);
+            }
+        });
+    }
+    
+    return cell;
+}
+
+function populateHorrorGrid() {
+    const grid = document.getElementById('horrorGrid');
+    if (!grid) return;
+    
+    const totalCells = 30; // 10x3 grid
+    const specialCells = [
+        { text: 'CONSCIOUSNESS', url: 'consciousness.html' },
+        { text: 'TRANSFORMATION', url: 'transformation.html' },
+        { text: 'MEDITATION', url: 'meditation.html' },
+        { text: 'VOID_GRID', url: 'void-grid.html' },
+        { text: 'CONTENTS', url: 'contents.html' }
+    ];
+    
+    // Random positions for special cells
+    const specialPositions = new Set();
+    while (specialPositions.size < specialCells.length) {
+        specialPositions.add(Math.floor(Math.random() * totalCells));
+    }
+    
+    let specialIndex = 0;
+    for (let i = 0; i < totalCells; i++) {
+        if (specialPositions.has(i)) {
+            grid.appendChild(createHorrorCell(true, specialCells[specialIndex]));
+            specialIndex++;
+        } else {
+            grid.appendChild(createHorrorCell());
+        }
+    }
+}
+
+function randomHorrorMutation() {
+    const cells = document.querySelectorAll('.horror-cell:not(.horror-active)');
+    const randomCell = cells[Math.floor(Math.random() * cells.length)];
+    
+    if (randomCell && Math.random() < 0.3) {
+        const img = randomCell.querySelector('.horror-cell-image');
+        const overlay = randomCell.querySelector('.horror-cell-overlay');
+        
+        if (img) {
+            img.src = getUniqueRandomImage();
+        }
+        
+        if (overlay && !overlay.style.opacity) {
+            overlay.textContent = getRandomHorrorText();
+        }
+        
+        // Random class mutation
+        const mutations = ['horror-corrupted', 'horror-void', ''];
+        const randomMutation = mutations[Math.floor(Math.random() * mutations.length)];
+        
+        randomCell.className = 'horror-cell ' + randomMutation;
+        
+        setTimeout(() => {
+            randomCell.className = 'horror-cell';
+        }, 2000);
+    }
+}
+
 // Initialize default view
 showTerminalView();
+
+// Initialize horror grid
+populateHorrorGrid();
 
 // Stream-of-consciousness death whispers
 function generateDeathWhisper() {
@@ -756,6 +994,7 @@ setInterval(randomSystemGlitch, 6000 + Math.random() * 8000);
 setInterval(simulateVideoError, 15000 + Math.random() * 20000);
 setInterval(simulateTerminalActivity, 2000 + Math.random() * 4000); // Much faster terminal
 setInterval(generateDeathWhisper, 8000 + Math.random() * 12000); // Death whispers
+setInterval(randomHorrorMutation, 4000 + Math.random() * 6000); // Horror grid mutations
 
 // Add some startup effects
 setTimeout(() => {
