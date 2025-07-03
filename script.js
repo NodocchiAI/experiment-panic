@@ -79,9 +79,7 @@ function showTerminalView() {
         </section>
 
         <section class="video-panel">
-            <video autoplay muted loop class="bg-video">
-                <source src="assets/glitch_girl.mp4" type="video/mp4">
-            </video>
+            <img src="assets/test_gif.gif" class="bg-video" alt="Glitch Girl Animation">
             <div class="video-overlay">
                 <div class="overlay-text">
                     <div class="large-text">אני מי?</div>
