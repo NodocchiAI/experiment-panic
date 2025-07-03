@@ -1046,3 +1046,142 @@ document.addEventListener('keydown', (e) => {
         }, 5000);
     }
 });
+
+// Disturbing Gallery System
+const disturbingAssets = [
+    'assets/sanmple1.jpg',
+    'assets/sample2.jpg',
+    'assets/sample3.jpg',
+    'assets/sample4.jpg',
+    'assets/sample5.jpg',
+    'assets/sample6.jpg',
+    'assets/sample7.jpg',
+    'assets/sample8.jpg',
+    'assets/sample9.jpg',
+    'assets/sample10.jpg',
+    'assets/cursed1.jpg',
+    'assets/cursed2.jpg',
+    'assets/cursed3.jpg',
+    'assets/cursed4.jpg',
+    'assets/cursed6.jpg',
+    'assets/cursed7.jpg',
+    'assets/cursed8.jpg',
+    'assets/cursed9.jpg'
+];
+
+const disturbingTexts = [
+    'SOUL_CORRUPTED',
+    'MEMORY_LEAK',
+    'IDENTITY_ERROR',
+    'DEATH.EXE',
+    'VOID_DETECTED',
+    'CONSCIOUSNESS_FRAGMENTED',
+    'REALITY.DLL_MISSING',
+    'EXISTENCE_DENIED'
+];
+
+function createDisturbingCell() {
+    const cell = document.createElement('div');
+    cell.className = 'disturbing-cell';
+    
+    const img = document.createElement('img');
+    img.className = 'disturbing-image';
+    img.src = disturbingAssets[Math.floor(Math.random() * disturbingAssets.length)];
+    
+    const overlay = document.createElement('div');
+    overlay.className = 'disturbing-overlay';
+    overlay.textContent = disturbingTexts[Math.floor(Math.random() * disturbingTexts.length)];
+    
+    cell.appendChild(img);
+    cell.appendChild(overlay);
+    
+    // Click effect for disturbing cells
+    cell.addEventListener('click', () => {
+        if (Math.random() < 0.5) {
+            img.src = disturbingAssets[Math.floor(Math.random() * disturbingAssets.length)];
+            overlay.textContent = disturbingTexts[Math.floor(Math.random() * disturbingTexts.length)];
+            cell.style.filter = 'invert(1) hue-rotate(180deg)';
+            
+            setTimeout(() => {
+                cell.style.filter = '';
+            }, 1000);
+        }
+    });
+    
+    return cell;
+}
+
+function populateDisturbingGrid() {
+    const grid = document.getElementById('disturbingGrid');
+    if (!grid) return;
+    
+    // Clear existing cells
+    grid.innerHTML = '';
+    
+    // Create 4 disturbing cells (2x2 grid)
+    for (let i = 0; i < 4; i++) {
+        grid.appendChild(createDisturbingCell());
+    }
+}
+
+// Text Corruption System
+const corruptionTexts = [
+    'S̴O̷U̸L̶.̵D̸L̷L̴ ̶N̸O̷T̵ ̴F̷O̸U̶N̵D̸',
+    'M̴E̷M̸O̶R̵Y̸_̷F̴R̸A̶G̵M̸E̷N̸T̶S̵.̴E̸X̷E̶',
+    'C̴O̷N̸S̶C̵I̸O̷U̴S̸N̶E̵S̸S̷_̴O̶V̸E̷R̶F̵L̸O̶W̵',
+    'D̴E̷A̸T̶H̵.̸P̴R̸O̶T̵O̸C̷O̶L̵ ̴A̸C̷T̶I̵V̸E̷',
+    'I̴D̷E̸N̶T̵I̸T̷Y̴_̶C̸O̷R̶R̵U̸P̷T̶I̵O̸N̷',
+    'R̴E̷A̸L̶I̵T̸Y̷.̴D̶L̸L̵ ̶C̸R̷A̶S̵H̸E̷D̴',
+    'V̴O̷I̸D̶_̵P̸O̷I̴N̸T̶E̵R̷ ̴E̸R̷R̶O̵R̸',
+    'E̴X̷I̸S̶T̵E̸N̷C̴E̶.̵E̷X̸E̷ ̴H̸A̶S̵ ̷S̸T̴O̶P̵P̸E̷D̶ ̸W̷O̶R̵K̸I̷N̴G̶',
+    '蜀ｬ鬥ｬ縺 縺ゅ＞縺�∴縺�',
+    '讖溯�繝ｻ遐皮ｩｶ_OVERFLOW',
+    'NULL_SOUL_EXCEPTION',
+    'PERSONA_SEGFAULT'
+];
+
+function addCorruptionText() {
+    const stream = document.getElementById('corruptionStream');
+    if (!stream) return;
+    
+    const textDiv = document.createElement('div');
+    textDiv.className = 'corruption-text';
+    textDiv.textContent = corruptionTexts[Math.floor(Math.random() * corruptionTexts.length)];
+    
+    stream.appendChild(textDiv);
+    
+    // Keep only last 10 lines
+    while (stream.children.length > 10) {
+        stream.removeChild(stream.firstChild);
+    }
+    
+    // Auto-scroll to bottom
+    stream.scrollTop = stream.scrollHeight;
+}
+
+function randomDisturbingMutation() {
+    const cells = document.querySelectorAll('.disturbing-cell');
+    if (cells.length === 0) return;
+    
+    const randomCell = cells[Math.floor(Math.random() * cells.length)];
+    const img = randomCell.querySelector('.disturbing-image');
+    const overlay = randomCell.querySelector('.disturbing-overlay');
+    
+    if (img && Math.random() < 0.3) {
+        img.src = disturbingAssets[Math.floor(Math.random() * disturbingAssets.length)];
+    }
+    
+    if (overlay && Math.random() < 0.4) {
+        overlay.textContent = disturbingTexts[Math.floor(Math.random() * disturbingTexts.length)];
+    }
+}
+
+// Initialize new systems
+document.addEventListener('DOMContentLoaded', () => {
+    populateDisturbingGrid();
+    
+    // Set intervals for dynamic effects
+    setInterval(addCorruptionText, 2000 + Math.random() * 3000);
+    setInterval(randomDisturbingMutation, 4000 + Math.random() * 6000);
+    setInterval(populateDisturbingGrid, 30000 + Math.random() * 20000); // Rebuild grid occasionally
+});

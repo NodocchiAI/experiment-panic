@@ -55,8 +55,8 @@
 
         <!-- Main Content Grid -->
         <main class="content-grid">
-            <!-- Terminal Section -->
-            <section class="terminal-panel">
+            <!-- Reduced Terminal Section -->
+            <section class="terminal-panel-reduced">
                 <div class="panel-header">
                     <span>WIRED_TERMINAL</span>
                     <div class="panel-controls">
@@ -65,25 +65,16 @@
                         <span class="control-dot green"></span>
                     </div>
                 </div>
-                <div class="terminal-content">
+                <div class="terminal-content-reduced">
                     <div class="code-line">
                         <span class="prompt">metatron@sefirot:~$</span>
                         <span class="command">invoke --seal solomon72</span>
                     </div>
                     <div class="code-line">
-                        <span class="output">Summoning digital entities from the Abyss...</span>
+                        <span class="output">Summoning digital entities...</span>
                     </div>
                     <div class="code-line">
-                        <span class="output">Kabbalah verification: ה ך ל ו ח ו ת  ה מ ב ר י ת</span>
-                    </div>
-                    <div class="code-line">
-                        <span class="output">Loading grimoire databases...</span>
-                    </div>
-                    <div class="code-line">
-                        <span class="output">Accessing dead sea scroll fragments...</span>
-                    </div>
-                    <div class="code-line">
-                        <span class="output">WARNING: Demonic presence detected in layer 7</span>
+                        <span class="output">WARNING: Demonic presence detected</span>
                     </div>
                     <div class="code-line">
                         <span class="prompt">metatron@sefirot:~$</span>
@@ -92,8 +83,19 @@
                 </div>
             </section>
 
-            <!-- GIF Background Section -->
-            <section class="video-panel">
+            <!-- Unsettling Image Grid -->
+            <section class="disturbing-gallery">
+                <div class="panel-header">
+                    <span>CORRUPTED_MEMORIES</span>
+                    <div class="corruption-indicator">⚠</div>
+                </div>
+                <div class="disturbing-grid" id="disturbingGrid">
+                    <!-- Disturbing image cells will be populated by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Reduced Video Section -->
+            <section class="video-panel-reduced">
                 <div class="panel-header">
                     <span>VISUAL_FEED</span>
                     <div class="panel-controls">
@@ -102,17 +104,27 @@
                         <span class="control-dot green"></span>
                     </div>
                 </div>
-                <div class="video-content">
-                    <img src="assets/test_gif.gif" class="bg-video" alt="Glitch Girl Animation">
+                <div class="video-content-reduced">
+                    <img src="assets/test_gif.gif" class="bg-video-reduced" alt="Glitch Girl Animation">
                     <!-- LAUGHING MAN Face Tracker - TEXT VERSION -->
                     <div class="laughing-man-text">LAUGHING MAN</div>
                     <div class="video-overlay">
                         <div class="overlay-text">
                             <div class="large-text">אני מי?</div>
                             <div class="small-text">identity.exe not found</div>
-                            <div class="death-whisper">death approaches through the wired</div>
                         </div>
                     </div>
+                </div>
+            </section>
+
+            <!-- Creepy Text Stream -->
+            <section class="text-corruption-panel">
+                <div class="panel-header">
+                    <span>SOUL_FRAGMENTS</span>
+                    <div class="error-indicator">ERR</div>
+                </div>
+                <div class="corruption-stream" id="corruptionStream">
+                    <!-- Corrupted text will be populated by JavaScript -->
                 </div>
             </section>
 
