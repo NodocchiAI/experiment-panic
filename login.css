@@ -64,6 +64,42 @@ body {
     mix-blend-mode: difference;
 }
 
+.bg-layer-6 {
+    background-image: url('assets/cursed6.jpg');
+    opacity: 0.15;
+    z-index: 5;
+    animation: cursedShift6 22s ease-in-out infinite;
+    filter: blur(0.5px) contrast(1.8) brightness(0.4) saturate(0.3);
+    mix-blend-mode: hard-light;
+}
+
+.bg-layer-7 {
+    background-image: url('assets/cursed7.jpg');
+    opacity: 0.12;
+    z-index: 6;
+    animation: cursedShift7 28s ease-in-out infinite reverse;
+    filter: invert(0.3) sepia(0.8) contrast(2.2) brightness(0.2);
+    mix-blend-mode: color-burn;
+}
+
+.bg-layer-8 {
+    background-image: url('assets/cursed8.jpg');
+    opacity: 0.08;
+    z-index: 7;
+    animation: cursedShift8 16s ease-in-out infinite;
+    filter: hue-rotate(180deg) contrast(2.5) brightness(0.1) blur(1px);
+    mix-blend-mode: exclusion;
+}
+
+.bg-layer-9 {
+    background-image: url('assets/cursed9.jpg');
+    opacity: 0.06;
+    z-index: 8;
+    animation: cursedShift9 35s ease-in-out infinite;
+    filter: grayscale(0.7) contrast(3.0) brightness(0.05) invert(0.4);
+    mix-blend-mode: luminosity;
+}
+
 @keyframes cursedShift1 {
     0%, 100% { 
         transform: scale(1) rotate(0deg); 
@@ -123,6 +159,73 @@ body {
         transform: scale(1.09) rotate(-0.4deg); 
         filter: sepia(0.8) contrast(1.9) brightness(0.25) blur(0.7px); 
         opacity: 0.10; 
+    }
+}
+
+@keyframes cursedShift6 {
+    0%, 100% { 
+        transform: scale(1.1) rotate(-0.5deg); 
+        filter: blur(0.5px) contrast(1.8) brightness(0.4) saturate(0.3) hue-rotate(0deg); 
+        opacity: 0.15; 
+    }
+    40% { 
+        transform: scale(0.9) rotate(1.2deg); 
+        filter: blur(1.5px) contrast(2.5) brightness(0.2) saturate(0.1) hue-rotate(45deg); 
+        opacity: 0.20; 
+    }
+    80% { 
+        transform: scale(1.25) rotate(-0.8deg); 
+        filter: blur(0.2px) contrast(3.0) brightness(0.1) saturate(0.6) hue-rotate(-30deg); 
+        opacity: 0.08; 
+    }
+}
+
+@keyframes cursedShift7 {
+    0%, 100% { 
+        transform: scale(1.05) rotate(0.3deg); 
+        filter: invert(0.3) sepia(0.8) contrast(2.2) brightness(0.2) blur(0px); 
+    }
+    25% { 
+        transform: scale(1.3) rotate(-1.1deg); 
+        filter: invert(0.6) sepia(1.2) contrast(3.0) brightness(0.05) blur(2px); 
+    }
+    75% { 
+        transform: scale(0.85) rotate(0.9deg); 
+        filter: invert(0.1) sepia(0.4) contrast(1.5) brightness(0.4) blur(0.5px); 
+    }
+}
+
+@keyframes cursedShift8 {
+    0%, 100% { 
+        transform: scale(1) rotate(0deg); 
+        filter: hue-rotate(180deg) contrast(2.5) brightness(0.1) blur(1px) saturate(0); 
+    }
+    50% { 
+        transform: scale(1.4) rotate(-2deg); 
+        filter: hue-rotate(270deg) contrast(4.0) brightness(0.02) blur(3px) saturate(2); 
+    }
+}
+
+@keyframes cursedShift9 {
+    0%, 100% { 
+        transform: scale(1.02) rotate(0.1deg); 
+        filter: grayscale(0.7) contrast(3.0) brightness(0.05) invert(0.4) blur(0px); 
+        opacity: 0.06; 
+    }
+    20% { 
+        transform: scale(1.15) rotate(-0.4deg); 
+        filter: grayscale(1) contrast(5.0) brightness(0.01) invert(0.8) blur(1.5px); 
+        opacity: 0.12; 
+    }
+    60% { 
+        transform: scale(0.95) rotate(0.7deg); 
+        filter: grayscale(0.3) contrast(2.0) brightness(0.15) invert(0.2) blur(0.3px); 
+        opacity: 0.03; 
+    }
+    90% { 
+        transform: scale(1.08) rotate(-0.2deg); 
+        filter: grayscale(0.9) contrast(4.0) brightness(0.03) invert(0.6) blur(2px); 
+        opacity: 0.09; 
     }
 }
 

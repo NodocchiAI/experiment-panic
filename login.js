@@ -107,7 +107,7 @@ function triggerInputGlitch(input) {
     }
     
     input.value = glitchValue;
-    input.style.color = '#ff00ff';
+    input.style.color = '#cc0000';
     
     setTimeout(() => {
         input.value = originalValue;
@@ -234,8 +234,10 @@ function triggerScreenGlitch() {
         background: linear-gradient(
             90deg,
             transparent 0%,
-            rgba(255, 0, 255, 0.8) 48%,
-            rgba(255, 0, 255, 0.8) 52%,
+            rgba(139, 0, 0, 0.9) 47%,
+            rgba(255, 0, 0, 0.8) 49%,
+            rgba(0, 0, 0, 0.9) 51%,
+            rgba(139, 0, 0, 0.8) 53%,
             transparent 100%
         );
         z-index: 999;
