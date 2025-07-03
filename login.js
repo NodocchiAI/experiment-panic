@@ -50,12 +50,6 @@ function initializeDreamEffects() {
         }, 2000);
     }
     
-    // Random fragment positioning
-    const fragments = document.querySelectorAll('.fragment');
-    fragments.forEach(fragment => {
-        fragment.style.left = Math.random() * 80 + '%';
-        fragment.style.animationDelay = Math.random() * 15 + 's';
-    });
 }
 
 function startRealTimeUpdates() {
