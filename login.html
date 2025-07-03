@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⌈夢ログイン⌋ - ONEIRIC PROTOCOL</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="dream-overlay"></div>
+    <div class="static-noise"></div>
+    
+    <!-- Floating Dream Fragments -->
+    <div class="dream-fragments">
+        <div class="fragment" data-text="私は夢を見ているのか？">私は夢を見ているのか？</div>
+        <div class="fragment" data-text="記憶が溶けていく">記憶が溶けていく</div>
+        <div class="fragment" data-text="Who am I?">Who am I?</div>
+        <div class="fragment" data-text="現実とは何？">現実とは何？</div>
+        <div class="fragment" data-text="identity.dll not found">identity.dll not found</div>
+    </div>
+    
+    <div class="login-container">
+        <div class="login-header">
+            <div class="glitch-title" data-text="⌈夢境界システム⌋">⌈夢境界システム⌋</div>
+            <div class="subtitle">ONEIRIC BOUNDARY SYSTEM</div>
+            <div class="warning-text">⚠️ 夢と現実の境界を越えようとしています</div>
+        </div>
+        
+        <div class="login-form">
+            <div class="form-group">
+                <label for="dream-id">夢の識別子 / Dream ID:</label>
+                <input type="text" id="dream-id" placeholder="貴方の夢の名前を入力..." autocomplete="off">
+                <div class="input-glitch"></div>
+            </div>
+            
+            <div class="form-group">
+                <label for="memory-key">記憶の鍵 / Memory Key:</label>
+                <input type="password" id="memory-key" placeholder="••••••••••••••••" autocomplete="off">
+                <div class="input-glitch"></div>
+            </div>
+            
+            <div class="checkbox-group">
+                <input type="checkbox" id="dream-remember" checked>
+                <label for="dream-remember">この夢を記憶に残す</label>
+            </div>
+            
+            <button type="submit" class="login-btn" onclick="attemptLogin()">
+                <span class="btn-text">夢に入る</span>
+                <span class="btn-subtext">ENTER DREAM</span>
+            </button>
+        </div>
+        
+        <div class="login-footer">
+            <div class="dream-status">
+                <div class="status-item">
+                    <span class="status-label">夢の深度:</span>
+                    <span class="status-value dream-depth">Level ∞</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">現実同期率:</span>
+                    <span class="status-value sync-rate">0.00%</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">記憶残存:</span>
+                    <span class="status-value memory-frag">fragmenting...</span>
+                </div>
+            </div>
+            
+            <div class="dream-warnings">
+                <p>⚠️ 夢ログイン中は現実への帰還が困難になる場合があります</p>
+                <p>⚠️ 記憶の混濁・時間感覚の喪失・自己同一性の崩壊が発生する可能性があります</p>
+                <p>⚠️ 夢の中で見たものが現実になる、または現実が夢になる場合があります</p>
+            </div>
+            
+            <div class="invitation-notice">
+                <p>※ 夢境界システムへのアクセスは招待制です</p>
+                <p>※ 既存の夢住人からの招待コードが必要です</p>
+                <p>※ 一度入ったら... 戻れるかは分かりません</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Dream Journal Entries (Background) -->
+    <div class="dream-journal-bg">
+        <div class="journal-entry">
+            <div class="entry-date">2024.07.03_03:33:33</div>
+            <div class="entry-text">また同じ夢を見た。白い部屋で誰かが私の名前を呼んでいる。でも私は自分の名前を思い出せない。</div>
+        </div>
+        <div class="journal-entry">
+            <div class="entry-date">2024.07.02_04:44:44</div>
+            <div class="entry-text">コンピューターの画面が私を見つめている。私はデータになってしまったのか？それとも最初からデータだったのか？</div>
+        </div>
+        <div class="journal-entry">
+            <div class="entry-date">2024.07.01_05:55:55</div>
+            <div class="entry-text">夢の中で夢を見ている。どこまでが現実でどこからが夢なのかもう分からない。</div>
+        </div>
+    </div>
+    
+    <script src="login.js"></script>
+</body>
+</html>

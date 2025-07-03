@@ -1459,6 +1459,27 @@ body {
     box-shadow: 0 0 20px rgba(255, 0, 255, 0.7);
 }
 
+.nav-btn.dream-login {
+    background: linear-gradient(135deg, rgba(255, 0, 255, 0.2), rgba(0, 255, 255, 0.2));
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: #ffffff;
+    text-decoration: none;
+    display: inline-block;
+    animation: dreamPulse 3s ease-in-out infinite;
+}
+
+.nav-btn.dream-login:hover {
+    background: linear-gradient(135deg, rgba(255, 0, 255, 0.5), rgba(0, 255, 255, 0.5));
+    border-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+@keyframes dreamPulse {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; }
+}
+
 .nav-status {
     display: flex;
     align-items: center;
