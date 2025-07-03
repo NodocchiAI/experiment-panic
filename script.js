@@ -79,11 +79,21 @@ function showTerminalView() {
         </section>
 
         <section class="video-panel">
-            <img src="assets/test_gif.gif" class="bg-video" alt="Glitch Girl Animation">
-            <div class="video-overlay">
-                <div class="overlay-text">
-                    <div class="large-text">אני מי?</div>
-                    <div class="small-text">soul.dll corrupted by digital daemons</div>
+            <div class="panel-header">
+                <span>VISUAL_FEED</span>
+                <div class="panel-controls">
+                    <span class="control-dot red"></span>
+                    <span class="control-dot yellow"></span>
+                    <span class="control-dot green"></span>
+                </div>
+            </div>
+            <div class="video-content">
+                <img src="assets/test_gif.gif" class="bg-video" alt="Glitch Girl Animation">
+                <div class="video-overlay">
+                    <div class="overlay-text">
+                        <div class="large-text">אני מי?</div>
+                        <div class="small-text">soul.dll corrupted by digital daemons</div>
+                    </div>
                 </div>
             </div>
         </section>
