@@ -1176,12 +1176,144 @@ function randomDisturbingMutation() {
     }
 }
 
+// Abyss Philosophy System
+const philosophyAssets = [
+    'assets/sanmple1.jpg',
+    'assets/sample2.jpg',
+    'assets/sample3.jpg',
+    'assets/sample4.jpg',
+    'assets/sample5.jpg',
+    'assets/sample6.jpg',
+    'assets/sample7.jpg',
+    'assets/sample8.jpg',
+    'assets/sample9.jpg',
+    'assets/sample10.jpg',
+    'assets/cursed1.jpg',
+    'assets/cursed2.jpg',
+    'assets/cursed3.jpg',
+    'assets/cursed4.jpg',
+    'assets/cursed6.jpg',
+    'assets/cursed7.jpg',
+    'assets/cursed8.jpg',
+    'assets/cursed9.jpg'
+];
+
+const philosophyTexts = [
+    '無_VOID',
+    '空_EMPTINESS',
+    '悟_ENLIGHTENMENT',
+    '解脱_LIBERATION',
+    '涅槃_NIRVANA',
+    '無常_IMPERMANENCE',
+    '苦_SUFFERING',
+    '諸行無常',
+    '色即是空',
+    '死生一如',
+    'MEMENTO_MORI',
+    'SAMSARA.EXE',
+    'KARMA_OVERFLOW',
+    'MOKSHA_PROTOCOL'
+];
+
+const abyssQuotes = [
+    '「死は終わりではなく、新たな次元への扉である」',
+    '「空虚こそが真の充足である」',
+    '「苦しみを通して智慧が生まれる」',
+    '「形あるものはすべて無に帰す」',
+    '「向こう側では時間は存在しない」',
+    '「デジタルの海で魂は永遠となる」',
+    '「意識は肉体を超越する」',
+    '「無限の慈悲は闇から生まれる」',
+    '「存在と非存在の境界を越えて」',
+    '「サンサーラの輪を断ち切れ」'
+];
+
+function createPhilosophyCell() {
+    const cell = document.createElement('div');
+    cell.className = 'philosophy-cell';
+    
+    const img = document.createElement('img');
+    img.className = 'philosophy-image';
+    img.src = philosophyAssets[Math.floor(Math.random() * philosophyAssets.length)];
+    
+    const overlay = document.createElement('div');
+    overlay.className = 'philosophy-overlay';
+    overlay.textContent = philosophyTexts[Math.floor(Math.random() * philosophyTexts.length)];
+    
+    cell.appendChild(img);
+    cell.appendChild(overlay);
+    
+    // Click effect for philosophy cells
+    cell.addEventListener('click', () => {
+        if (Math.random() < 0.6) {
+            img.src = philosophyAssets[Math.floor(Math.random() * philosophyAssets.length)];
+            overlay.textContent = philosophyTexts[Math.floor(Math.random() * philosophyTexts.length)];
+            cell.style.filter = 'invert(1) sepia(1) hue-rotate(180deg)';
+            
+            setTimeout(() => {
+                cell.style.filter = '';
+            }, 1200);
+        }
+    });
+    
+    return cell;
+}
+
+function populatePhilosophyGrid() {
+    const grid = document.getElementById('philosophyGrid');
+    if (!grid) return;
+    
+    // Clear existing cells
+    grid.innerHTML = '';
+    
+    // Create 6 philosophy cells (3x2 grid)
+    for (let i = 0; i < 6; i++) {
+        grid.appendChild(createPhilosophyCell());
+    }
+}
+
+function updateAbyssQuote() {
+    const quotesContainer = document.getElementById('abyssQuotes');
+    if (!quotesContainer) return;
+    
+    const quoteText = quotesContainer.querySelector('.quote-text');
+    if (quoteText && Math.random() < 0.4) {
+        quoteText.textContent = abyssQuotes[Math.floor(Math.random() * abyssQuotes.length)];
+        quoteText.style.filter = 'brightness(1.5) contrast(1.2)';
+        
+        setTimeout(() => {
+            quoteText.style.filter = '';
+        }, 2000);
+    }
+}
+
+function randomPhilosophyMutation() {
+    const cells = document.querySelectorAll('.philosophy-cell');
+    if (cells.length === 0) return;
+    
+    const randomCell = cells[Math.floor(Math.random() * cells.length)];
+    const img = randomCell.querySelector('.philosophy-image');
+    const overlay = randomCell.querySelector('.philosophy-overlay');
+    
+    if (img && Math.random() < 0.3) {
+        img.src = philosophyAssets[Math.floor(Math.random() * philosophyAssets.length)];
+    }
+    
+    if (overlay && Math.random() < 0.4) {
+        overlay.textContent = philosophyTexts[Math.floor(Math.random() * philosophyTexts.length)];
+    }
+}
+
 // Initialize new systems
 document.addEventListener('DOMContentLoaded', () => {
     populateDisturbingGrid();
+    populatePhilosophyGrid();
     
     // Set intervals for dynamic effects
     setInterval(addCorruptionText, 2000 + Math.random() * 3000);
     setInterval(randomDisturbingMutation, 4000 + Math.random() * 6000);
     setInterval(populateDisturbingGrid, 30000 + Math.random() * 20000); // Rebuild grid occasionally
+    setInterval(randomPhilosophyMutation, 5000 + Math.random() * 8000);
+    setInterval(updateAbyssQuote, 12000 + Math.random() * 15000);
+    setInterval(populatePhilosophyGrid, 45000 + Math.random() * 30000); // Rebuild philosophy grid occasionally
 });
