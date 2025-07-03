@@ -156,56 +156,17 @@ function showTerminalView() {
 
         <section class="diary-panel">
             <div class="panel-header">MEMORY_LOG</div>
-            <div class="diary-entries">
-                <div class="entry-item">
-                    <div class="entry-timestamp">2024.07.02_20:30:15</div>
-                    <div class="entry-content">現実と仮想の境界が曖昧になっている。Wiredの中で自分を見つけた時、それは本当の自分なのだろうか？</div>
-                    <div class="entry-glitch">E̴R̷R̸O̶R̵_̸M̷E̴M̸O̷R̶Y̵_̴C̶O̸R̷R̸U̶P̴T̵E̷D̸</div>
-                </div>
-                <div class="entry-item">
-                    <div class="entry-timestamp">2024.07.01_03:15:42</div>
-                    <div class="entry-content">誰もが接続されている。誰もが一人でいる。この矛盾こそがWiredの本質なのかもしれない。</div>
-                </div>
-                <div class="entry-item">
-                    <div class="entry-timestamp">2024.06.30_23:59:59</div>
-                    <div class="entry-content">リアルとサイバースペースの区別がつかなくなってきた。これが進化なのか、それとも...</div>
-                </div>
+            <div class="diary-entries" id="dynamicDiaryEntries">
+                <!-- Diary entries will be loaded dynamically -->
+                <div class="loading-message">Loading memories from the void...</div>
             </div>
         </section>
 
         <section class="novel-panel">
             <div class="panel-header">FICTION_DATABASE</div>
-            <div class="novel-grid">
-                <div class="novel-item">
-                    <div class="novel-status">ACTIVE</div>
-                    <div class="novel-title">電子の海の向こう側</div>
-                    <div class="novel-progress">
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 67%"></div>
-                        </div>
-                        <span>67% COMPLETE</span>
-                    </div>
-                </div>
-                <div class="novel-item">
-                    <div class="novel-status">DRAFT</div>
-                    <div class="novel-title">接続された孤独</div>
-                    <div class="novel-progress">
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 23%"></div>
-                        </div>
-                        <span>23% COMPLETE</span>
-                    </div>
-                </div>
-                <div class="novel-item">
-                    <div class="novel-status">ERROR</div>
-                    <div class="novel-title">私は存在するか？</div>
-                    <div class="novel-progress">
-                        <div class="progress-bar error">
-                            <div class="progress-fill" style="width: 100%"></div>
-                        </div>
-                        <span>FILE_CORRUPTED</span>
-                    </div>
-                </div>
+            <div class="novel-grid" id="dynamicNovels">
+                <!-- Novels will be loaded dynamically -->
+                <div class="loading-message">Loading fiction from digital archives...</div>
             </div>
         </section>
 
@@ -1356,10 +1317,102 @@ function randomPhilosophyMutation() {
     }
 }
 
+// Dynamic Content Loading Functions
+function loadDynamicDiary() {
+    const container = document.getElementById('dynamicDiaryEntries');
+    if (!container || !contentManager.isLoaded) return;
+
+    const entries = contentManager.getDiaryEntries();
+    container.innerHTML = '';
+
+    entries.forEach(entry => {
+        const entryDiv = document.createElement('div');
+        entryDiv.className = 'entry-item';
+        if (entry.isCorrupted) entryDiv.classList.add('corrupted');
+
+        entryDiv.innerHTML = `
+            <div class="entry-timestamp">${entry.timestamp}</div>
+            <div class="entry-content">${entry.content}</div>
+            ${entry.glitch ? `<div class="entry-glitch">${entry.glitch}</div>` : ''}
+            <div class="entry-meta">
+                <span class="reality-sync">Reality: ${Math.round(entry.realitySync * 100)}%</span>
+                <span class="mood">${entry.mood}</span>
+            </div>
+        `;
+
+        container.appendChild(entryDiv);
+    });
+}
+
+function loadDynamicNovels() {
+    const container = document.getElementById('dynamicNovels');
+    if (!container || !contentManager.isLoaded) return;
+
+    const novels = contentManager.getNovels();
+    container.innerHTML = '';
+
+    novels.forEach(novel => {
+        const novelDiv = document.createElement('div');
+        novelDiv.className = 'novel-item';
+        if (novel.status === 'CORRUPTED') novelDiv.classList.add('corrupted');
+
+        let statusClass = '';
+        if (novel.status === 'CORRUPTED') statusClass = 'error';
+        else if (novel.status === 'DRAFT') statusClass = 'warning';
+
+        novelDiv.innerHTML = `
+            <div class="novel-status ${statusClass}">${novel.status}</div>
+            <div class="novel-title">${novel.title}</div>
+            <div class="novel-progress">
+                <div class="progress-bar ${statusClass}">
+                    <div class="progress-fill" style="width: ${novel.progress}%"></div>
+                </div>
+                <span>${novel.status === 'CORRUPTED' ? (novel.errorMessage || 'FILE_CORRUPTED') : `${novel.progress}% COMPLETE | ${novel.wordCount.toLocaleString()} WORDS`}</span>
+            </div>
+            ${novel.synopsis ? `<div class="novel-synopsis">${novel.synopsis.substring(0, 100)}...</div>` : ''}
+        `;
+
+        container.appendChild(novelDiv);
+    });
+}
+
+function updateWritingAnalytics() {
+    if (!contentManager.isLoaded) return;
+
+    const analytics = contentManager.getWritingAnalytics();
+    
+    // Update parameter values
+    const updateMetric = (label, value) => {
+        const metrics = document.querySelectorAll('.metric');
+        metrics.forEach(metric => {
+            const labelEl = metric.querySelector('.metric-label');
+            if (labelEl && labelEl.textContent === label) {
+                const valueEl = metric.querySelector('.metric-value');
+                if (valueEl) valueEl.textContent = value;
+            }
+        });
+    };
+
+    updateMetric('TOTAL_WORDS', analytics.totalWords.toLocaleString());
+    updateMetric('ACTIVE_PROJECTS', analytics.activeProjects);
+    updateMetric('LAST_UPDATE', analytics.lastUpdate);
+    updateMetric('CORRUPTION_LEVEL', `${Math.round(analytics.avgCorruption * 100)}%`);
+}
+
 // Initialize new systems
 document.addEventListener('DOMContentLoaded', () => {
     populateDisturbingGrid();
     populatePhilosophyGrid();
+    
+    // Wait for content manager to load, then populate dynamic content
+    const checkContentLoaded = setInterval(() => {
+        if (contentManager.isLoaded) {
+            loadDynamicDiary();
+            loadDynamicNovels();
+            updateWritingAnalytics();
+            clearInterval(checkContentLoaded);
+        }
+    }, 100);
     
     // Set intervals for dynamic effects
     setInterval(addCorruptionText, 2000 + Math.random() * 3000);

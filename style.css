@@ -2265,3 +2265,59 @@ body {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.6; }
 }
+
+/* Dynamic Content Styles */
+.loading-message {
+    color: #666666;
+    font-style: italic;
+    text-align: center;
+    padding: 20px;
+    animation: loadingPulse 2s ease-in-out infinite;
+}
+
+@keyframes loadingPulse {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+}
+
+.entry-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+    font-size: 10px;
+    opacity: 0.7;
+}
+
+.reality-sync {
+    color: #00ffff;
+}
+
+.mood {
+    color: #ffaa00;
+    font-style: italic;
+}
+
+.novel-synopsis {
+    font-size: 10px;
+    color: #aaaaaa;
+    margin-top: 8px;
+    line-height: 1.3;
+    opacity: 0.8;
+}
+
+.entry-item.corrupted {
+    border-left: 3px solid #ff0000;
+    background: rgba(139, 0, 0, 0.1);
+    animation: corruptionFlicker 3s ease-in-out infinite;
+}
+
+.novel-item.corrupted {
+    border: 1px solid #ff0000;
+    background: rgba(139, 0, 0, 0.1);
+    animation: corruptionFlicker 3s ease-in-out infinite;
+}
+
+@keyframes corruptionFlicker {
+    0%, 90% { opacity: 1; }
+    95% { opacity: 0.7; }
+}

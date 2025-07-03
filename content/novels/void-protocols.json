@@ -1,0 +1,23 @@
+{
+  "id": "void-protocols",
+  "title": "VOID_PROTOCOLS.exe",
+  "status": "CORRUPTED",
+  "progress": 100,
+  "word_count": 0,
+  "genre": ["horror", "experimental", "corrupted"],
+  "last_updated": "2024.06.66",
+  "chapters": [
+    {
+      "chapter": 1,
+      "title": "N̴U̷L̸L̶_̵P̸O̷I̴N̸T̶E̵R̷",
+      "content": "エ ラ ー\n\nフ ァ イ ル が 破 損 し て い ま す\n\n蜀ｬ鬥ｬ縺 縺ゅ＞縺�∴縺�\n\nV̴O̷I̸D̶ V̴O̷I̸D̶ V̴O̷I̸D̶\n\n存在しない物語\n存在しない記憶\n存在しない私\n\n[データ復旧不可能]",
+      "word_count": 0,
+      "is_complete": false,
+      "is_corrupted": true
+    }
+  ],
+  "synopsis": "この小説は存在しません。もしくは、存在していたが、何かによって消去されました。バックアップを探していますが、見つからないかもしれません。",
+  "themes": ["non_existence", "data_loss", "digital_death"],
+  "corruption_level": 1.0,
+  "error_message": "FATAL_ERROR: REALITY.DLL_NOT_FOUND"
+}

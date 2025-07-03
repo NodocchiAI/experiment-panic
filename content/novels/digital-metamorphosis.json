@@ -1,0 +1,35 @@
+{
+  "id": "digital-metamorphosis",
+  "title": "デジタル・メタモルフォーゼ",
+  "status": "ACTIVE",
+  "progress": 67,
+  "word_count": 45892,
+  "genre": ["cyberpunk", "philosophical", "horror"],
+  "last_updated": "2024.07.03",
+  "chapters": [
+    {
+      "chapter": 1,
+      "title": "接続開始",
+      "content": "彼女はキーボードを叩き続けた。画面の向こう側に答えがあると信じて。しかし、入力すればするほど、自分が何者なのかわからなくなっていく。\n\n「私は存在するか？」\n\nターミナルに打ち込んだ問いかけに、システムは冷たく応答した。\n\n`ERROR: IDENTITY_NOT_FOUND`\n\nエラーメッセージが点滅する度に、彼女の記憶の一部が欠けていく。現実と仮想現実の境界が曖昧になり、もはやどちらが本当の世界なのかわからない。",
+      "word_count": 2847,
+      "is_complete": true
+    },
+    {
+      "chapter": 2,
+      "title": "深淵からの囁き",
+      "content": "Wiredに接続する度に、何かが彼女の中に入り込んでくる。それは知識なのか、それとも別の何かなのか。コードを書いているつもりが、いつの間にか自分自身がコードに書き換えられている。\n\n```\nfunction existence() {\n  if (this.reality === undefined) {\n    return null;\n  }\n  return this.soul.fragment();\n}\n```\n\n彼女が書いたコードは、彼女自身を定義していた。そして、その定義は日々変化し続けている。",
+      "word_count": 3156,
+      "is_complete": true
+    },
+    {
+      "chapter": 3,
+      "title": "第三の目覚め",
+      "content": "[進行中...]\n\n意識の層を剥がしていくと、最奥に潜む真実が見えてくる。それは...",
+      "word_count": 234,
+      "is_complete": false
+    }
+  ],
+  "synopsis": "現実と仮想現実の境界が曖昧な世界で、プログラマーの少女が自己同一性を探求する物語。コードと意識、デジタルと肉体の境界を越えて、新しい存在のあり方を模索する。",
+  "themes": ["identity", "consciousness", "digital_existence", "transformation"],
+  "corruption_level": 0.23
+}
