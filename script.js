@@ -99,26 +99,56 @@ function showTerminalView() {
         </section>
 
         <section class="data-viz-panel">
-            <div class="panel-header">DATA_STREAM</div>
+            <div class="panel-header">SYSTEM_PARAMETERS</div>
             <div class="data-content">
-                <div class="waveform">
-                    <div class="wave-line"></div>
-                    <div class="wave-line"></div>
-                    <div class="wave-line"></div>
-                    <div class="wave-line"></div>
-                </div>
-                <div class="data-metrics">
+                <div class="parameter-grid">
                     <div class="metric">
                         <span class="metric-label">DIARY_ENTRIES</span>
                         <span class="metric-value">∞</span>
                     </div>
                     <div class="metric">
-                        <span class="metric-label">NOVELS</span>
+                        <span class="metric-label">NOVELS_ACTIVE</span>
                         <span class="metric-value">127</span>
                     </div>
                     <div class="metric">
                         <span class="metric-label">CONNECTION</span>
-                        <span class="metric-value">UNSTABLE</span>
+                        <span class="metric-value error">UNSTABLE</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">DREAM_LAYERS</span>
+                        <span class="metric-value">7</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">SOUL_INTEGRITY</span>
+                        <span class="metric-value warning">47.3%</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">MEMORY_USAGE</span>
+                        <span class="metric-value">923.4MB</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">CONSCIOUSNESS</span>
+                        <span class="metric-value error">FRAGMENTED</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">REALITY_SYNC</span>
+                        <span class="metric-value">0.783</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">ABYSS_DEPTH</span>
+                        <span class="metric-value warning">∞m</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">NIRVANA_PROGRESS</span>
+                        <span class="metric-value">23.7%</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">VOID_DETECTION</span>
+                        <span class="metric-value error">ACTIVE</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">DEATH_PROXIMITY</span>
+                        <span class="metric-value warning">APPROACHING</span>
                     </div>
                 </div>
             </div>
@@ -301,13 +331,7 @@ function showNovelsView() {
         <section class="data-viz-panel">
             <div class="panel-header">WRITING_ANALYTICS</div>
             <div class="data-content">
-                <div class="waveform" style="margin-bottom: 30px;">
-                    <div class="wave-line"></div>
-                    <div class="wave-line"></div>
-                    <div class="wave-line"></div>
-                    <div class="wave-line"></div>
-                </div>
-                <div class="data-metrics">
+                <div class="parameter-grid">
                     <div class="metric">
                         <span class="metric-label">TOTAL_WORDS</span>
                         <span class="metric-value">314,036</span>
@@ -326,7 +350,35 @@ function showNovelsView() {
                     </div>
                     <div class="metric">
                         <span class="metric-label">INSPIRATION_LEVEL</span>
-                        <span class="metric-value">UNSTABLE</span>
+                        <span class="metric-value error">UNSTABLE</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">WRITER_BLOCK</span>
+                        <span class="metric-value warning">73.1%</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">FLOW_STATE</span>
+                        <span class="metric-value">0.34</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">CREATIVITY_INDEX</span>
+                        <span class="metric-value warning">LOW</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">DEADLINE_STRESS</span>
+                        <span class="metric-value error">HIGH</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">CAFFEINE_LEVEL</span>
+                        <span class="metric-value">350mg</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">EXISTENTIAL_DREAD</span>
+                        <span class="metric-value warning">RISING</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">VOID_STARING</span>
+                        <span class="metric-value error">47min</span>
                     </div>
                 </div>
             </div>
