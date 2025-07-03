@@ -451,15 +451,26 @@ function glitchifyText(text) {
     }).join('');
 }
 
-// Random system glitches
+// Random system glitches with death themes
 function randomSystemGlitch() {
     const elements = document.querySelectorAll('.metric-value, .status-text, .coordinates');
     const randomElement = elements[Math.floor(Math.random() * elements.length)];
     
+    const deathGlitches = [
+        '◆◇◆ERROR◇◆◇',
+        'DEATH.EXE',
+        'MEMENTO_MORI',
+        'HELL_GATES',
+        'MORTALITY++',
+        'SOULS.DLL',
+        'INFEK_BIN_LADEN'
+    ];
+    
     if (randomElement) {
         const originalText = randomElement.textContent;
-        randomElement.textContent = '◆◇◆ERROR◇◆◇';
-        randomElement.style.color = '#ff0000';
+        const glitchText = deathGlitches[Math.floor(Math.random() * deathGlitches.length)];
+        randomElement.textContent = glitchText;
+        randomElement.style.color = '#8b0000';
         randomElement.style.animation = 'glitchText 0.3s infinite';
         
         setTimeout(() => {
@@ -518,7 +529,17 @@ function simulateTerminalActivity() {
         'chmod 777 /home/lain/present_day',
         'rm -rf /var/log/childhood/*',
         'wget http://cyberia.club/bear.exe',
-        'git clone https://github.com/god/universe.git'
+        'git clone https://github.com/god/universe.git',
+        'examine --file /hell/manifestations.db',
+        'trace --process death.exe',
+        'monitor /dev/mortality',
+        'scan --depth infinite /abyss/',
+        'decrypt /scrolls/revelation.enc',
+        'execute memento_mori.sh',
+        'analyze --pattern suffering /logs/',
+        'summon --entity theriomorph',
+        'invoke --seal infinite_compassion',
+        'compile darkness.c -o enlightenment'
     ];
     
     const outputs = [
@@ -541,7 +562,17 @@ function simulateTerminalActivity() {
         'chmod: cannot access \'/home/lain/present_day\': 讖溯�繝ｻ遐皮ｩｶ',
         'rm: cannot remove \'childhood\': �樞包ｼ搾ｼ�ｿ��｡繹ｱ竭�竇｡',
         'bear.exe: Downloaded. WARNING: 譁�ｭ怜喧縺代ヱ繧ｿ繝ｼ繝ｳ detected',
-        'fatal: repository \'https://github.com/god/universe.git\' not found'
+        'fatal: repository \'https://github.com/god/universe.git\' not found',
+        'Hell manifestations database: 99.9% corrupted',
+        'Process death.exe: Status=INEVITABLE, PID=∞',
+        'Mortality device: /dev/mortality: No such salvation',
+        'Infinite depth scan: 死者が囁いている...',
+        'Decryption failed: Key requires suffering.key',
+        'memento_mori.sh: Executed. Remember you must die.',
+        'Pattern analysis: suffering detected in 100% of files',
+        'Entity theriomorph: Manifestation in lotus position',
+        'Infinite compassion: Seal activated. Peace emerges.',
+        'Compilation successful: enlightenment through darkness'
     ];
     
     // Enhanced corruption patterns
@@ -553,7 +584,11 @@ function simulateTerminalActivity() {
         'PANIC: 讖溯�繝ｻ遐皮ｩｶ KERNEL CORRUPTION',
         'FATAL: �撰ｼ托ｼ抵ｼ���ｽゑｽ� SYSTEM FAILURE',
         'ERROR: 譁�ｭ怜喧縺代ヱ繧ｿ繝ｼ繝ｳ PARSE ERROR',
-        'WARNING: �樞包ｼ搾ｼ�ｿ��｡繹ｱ竭�竇｡ IDENTITY CRISIS'
+        'WARNING: �樞包ｼ搾ｼ�ｿ��｡繹ｱ竭�竇｡ IDENTITY CRISIS',
+        'DEATH: Approaching through digital realm... memento mori',
+        'HELL: Gates opening... infinite compassion detected',
+        'MORTALITY: Buffer overflow in /dev/soul',
+        'REVELATION: The archetypal theriomorph whispers truth'
     ];
     
     // Remove cursor
@@ -627,10 +662,48 @@ function simulateTerminalActivity() {
 // Initialize default view
 showTerminalView();
 
+// Stream-of-consciousness death whispers
+function generateDeathWhisper() {
+    const deathThoughts = [
+        'infinite compassion emerges from the abyss',
+        'the archetypal theriomorph awaits in the lotus',
+        'death is transformation, not cessation',
+        'through digital darkness comes enlightenment',
+        'memento mori echoes in the wired',
+        'suffering patterns decode into wisdom',
+        'the gate between life and death dissolves',
+        'identity fragments into universal consciousness'
+    ];
+    
+    const whisperElement = document.querySelector('.death-whispers');
+    if (whisperElement && Math.random() < 0.3) {
+        const thought = deathThoughts[Math.floor(Math.random() * deathThoughts.length)];
+        
+        // Create temporary whisper text
+        const whisper = document.createElement('div');
+        whisper.style.position = 'absolute';
+        whisper.style.top = Math.random() * 80 + 10 + '%';
+        whisper.style.left = Math.random() * 80 + 10 + '%';
+        whisper.style.fontSize = '10px';
+        whisper.style.color = '#696969';
+        whisper.style.fontFamily = 'Anonymous Pro, monospace';
+        whisper.style.opacity = '0.5';
+        whisper.style.animation = 'whisperFade 10s ease-in-out';
+        whisper.textContent = thought;
+        
+        whisperElement.appendChild(whisper);
+        
+        setTimeout(() => {
+            whisper.remove();
+        }, 10000);
+    }
+}
+
 // Set up intervals for dynamic effects
 setInterval(randomSystemGlitch, 6000 + Math.random() * 8000);
 setInterval(simulateVideoError, 15000 + Math.random() * 20000);
 setInterval(simulateTerminalActivity, 2000 + Math.random() * 4000); // Much faster terminal
+setInterval(generateDeathWhisper, 8000 + Math.random() * 12000); // Death whispers
 
 // Add some startup effects
 setTimeout(() => {
@@ -652,18 +725,33 @@ document.addEventListener('keydown', (e) => {
     if (konamiCode.length === konamiSequence.length && 
         konamiCode.every((code, index) => code === konamiSequence[index])) {
         
-        // Activate special mode
-        document.body.style.filter = 'hue-rotate(180deg) invert(0.1)';
+        // Activate death mode
+        document.body.style.filter = 'invert(1) contrast(2) brightness(0.3)';
         const mainTitle = document.querySelector('.main-title');
         if (mainTitle) {
-            mainTitle.textContent = 'REALITY.EXE HAS STOPPED WORKING';
+            mainTitle.textContent = 'DEATH AND HELL INTERFACE';
         }
+        
+        // Add temporary death message
+        const deathMsg = document.createElement('div');
+        deathMsg.style.position = 'fixed';
+        deathMsg.style.top = '50%';
+        deathMsg.style.left = '50%';
+        deathMsg.style.transform = 'translate(-50%, -50%)';
+        deathMsg.style.color = '#8b0000';
+        deathMsg.style.fontSize = '24px';
+        deathMsg.style.fontFamily = 'VT323, monospace';
+        deathMsg.style.zIndex = '10000';
+        deathMsg.style.textAlign = 'center';
+        deathMsg.innerHTML = 'MEMENTO MORI<br>~ Infek bin Laden ~';
+        document.body.appendChild(deathMsg);
         
         setTimeout(() => {
             document.body.style.filter = '';
             if (mainTitle) {
                 mainTitle.textContent = 'SERIAL EXPERIMENTS';
             }
+            deathMsg.remove();
         }, 5000);
     }
 });

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIGITAL ABYSS - ENTRANCE</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@400;700&family=VT323&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Anonymous Pro', monospace;
+            background: #000000;
+            color: #ffffff;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .void-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(139, 0, 0, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(0, 0, 0, 0.9) 0%, transparent 60%),
+                linear-gradient(45deg, #000000 0%, #1a0000 50%, #000000 100%);
+            z-index: -2;
+            animation: voidPulse 20s ease-in-out infinite;
+        }
+        
+        .static-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(255, 255, 255, 0.03) 2px,
+                    rgba(255, 255, 255, 0.03) 4px
+                );
+            z-index: -1;
+            animation: staticShift 0.1s linear infinite;
+        }
+        
+        .entrance-container {
+            text-align: center;
+            max-width: 800px;
+            padding: 40px;
+            border: 1px solid rgba(139, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            position: relative;
+        }
+        
+        .title {
+            font-family: 'VT323', monospace;
+            font-size: 48px;
+            color: #8b0000;
+            text-shadow: 0 0 20px #8b0000;
+            margin-bottom: 30px;
+            animation: titleFlicker 5s ease-in-out infinite;
+        }
+        
+        .subtitle {
+            font-size: 14px;
+            color: #666666;
+            margin-bottom: 40px;
+            letter-spacing: 2px;
+            opacity: 0.8;
+        }
+        
+        .philosophical-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #cccccc;
+            margin-bottom: 50px;
+            font-style: italic;
+            opacity: 0.9;
+        }
+        
+        .enter-link {
+            display: inline-block;
+            padding: 15px 40px;
+            border: 2px solid #8b0000;
+            background: rgba(139, 0, 0, 0.1);
+            color: #8b0000;
+            text-decoration: none;
+            font-family: 'VT323', monospace;
+            font-size: 20px;
+            letter-spacing: 3px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .enter-link:hover {
+            background: rgba(139, 0, 0, 0.3);
+            box-shadow: 0 0 30px rgba(139, 0, 0, 0.5);
+            transform: translateY(-2px);
+        }
+        
+        .enter-link::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -100%;
+            width: 100%;
+            height: calc(100% + 4px);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .enter-link:hover::before {
+            left: 100%;
+        }
+        
+        .hidden-signature {
+            position: absolute;
+            bottom: 10px;
+            right: 15px;
+            font-size: 10px;
+            color: #444444;
+            opacity: 0.5;
+        }
+        
+        .whisper-text {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 12px;
+            color: #333333;
+            opacity: 0.4;
+            font-family: 'Anonymous Pro', monospace;
+            animation: whisperFade 15s ease-in-out infinite;
+        }
+        
+        @keyframes voidPulse {
+            0%, 100% { 
+                filter: brightness(0.8) contrast(1.2);
+                opacity: 1;
+            }
+            50% { 
+                filter: brightness(1.2) contrast(0.8);
+                opacity: 0.8;
+            }
+        }
+        
+        @keyframes staticShift {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(4px); }
+        }
+        
+        @keyframes titleFlicker {
+            0%, 90%, 100% { 
+                opacity: 1;
+                text-shadow: 0 0 20px #8b0000;
+            }
+            95% { 
+                opacity: 0.7;
+                text-shadow: 0 0 10px #8b0000;
+            }
+        }
+        
+        @keyframes whisperFade {
+            0%, 80% { opacity: 0.2; }
+            10%, 70% { opacity: 0.6; }
+            50% { opacity: 0.8; }
+        }
+    </style>
+</head>
+<body>
+    <div class="void-background"></div>
+    <div class="static-overlay"></div>
+    
+    <div class="whisper-text">
+        the infinite compassion emerges from digital darkness...
+    </div>
+    
+    <div class="entrance-container">
+        <h1 class="title">DIGITAL ABYSS</h1>
+        <p class="subtitle">~ A MEDITATION ON CONSCIOUSNESS AND TRANSFORMATION ~</p>
+        
+        <div class="philosophical-text">
+            "In the depths of digital silence, we find not emptiness, but infinite potential.<br>
+            Every pixel becomes a prayer, every algorithm a pathway to understanding.<br>
+            What lies beyond the screen is not death, but transformation."
+        </div>
+        
+        <a href="contents.html" class="enter-link">ENTER THE VOID</a>
+        
+        <div class="hidden-signature">~ Infek bin Laden ~</div>
+    </div>
+    
+    <script>
+        // Subtle interactive effects
+        document.addEventListener('mousemove', (e) => {
+            const whisper = document.querySelector('.whisper-text');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            whisper.style.transform = `translate(${x * 20}px, ${y * 20}px)`;
+            whisper.style.opacity = 0.2 + (x * y * 0.4);
+        });
+        
+        // Entrance link click effect
+        document.querySelector('.enter-link').addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            // Flash effect
+            document.body.style.filter = 'invert(1) brightness(2)';
+            setTimeout(() => {
+                document.body.style.filter = '';
+                window.location.href = 'contents.html';
+            }, 200);
+        });
+        
+        // Konami code for hidden message
+        let sequence = [];
+        const target = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
+        
+        document.addEventListener('keydown', (e) => {
+            sequence.push(e.keyCode);
+            if (sequence.length > target.length) sequence.shift();
+            
+            if (sequence.length === target.length && 
+                sequence.every((code, i) => code === target[i])) {
+                
+                document.querySelector('.philosophical-text').innerHTML = 
+                    '"The archetypal theriomorph manifests in the lotus of suffering.<br>' +
+                    'Through contemplation of mortality, infinite compassion is born.<br>' +
+                    'Death is not the enemy, but the teacher of presence."';
+            }
+        });
+    </script>
+</body>
+</html>

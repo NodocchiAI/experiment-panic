@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIGITAL ABYSS - CONTENTS</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@400;700&family=VT323&family=Orbitron:wght@400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Anonymous Pro', monospace;
+            background: #000000;
+            color: #ffffff;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        .abyss-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(139, 0, 0, 0.3) 0%, transparent 40%),
+                radial-gradient(circle at 70% 70%, rgba(0, 0, 0, 0.9) 0%, transparent 50%),
+                linear-gradient(135deg, #000000 0%, #0d0d0d 25%, #000000 50%, #0a0000 75%, #000000 100%);
+            z-index: -2;
+            animation: abyssPulse 25s ease-in-out infinite;
+        }
+        
+        .corruption-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                repeating-linear-gradient(
+                    45deg,
+                    transparent 0px,
+                    rgba(139, 0, 0, 0.05) 1px,
+                    transparent 3px
+                );
+            z-index: -1;
+            animation: corruptionDrift 30s ease-in-out infinite;
+        }
+        
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            border-bottom: 1px solid rgba(139, 0, 0, 0.3);
+            padding-bottom: 30px;
+        }
+        
+        .main-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 36px;
+            color: #8b0000;
+            text-shadow: 0 0 20px #8b0000;
+            margin-bottom: 15px;
+            animation: titleGlitch 8s ease-in-out infinite;
+        }
+        
+        .subtitle {
+            font-size: 14px;
+            color: #666666;
+            letter-spacing: 4px;
+            opacity: 0.8;
+        }
+        
+        .contents-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .content-section {
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(139, 0, 0, 0.4);
+            padding: 30px;
+            position: relative;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            overflow: hidden;
+        }
+        
+        .content-section::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, transparent, rgba(139, 0, 0, 0.3), transparent);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .content-section:hover::before {
+            opacity: 1;
+        }
+        
+        .content-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(139, 0, 0, 0.3);
+        }
+        
+        .section-title {
+            font-family: 'VT323', monospace;
+            font-size: 24px;
+            color: #ffffff;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px #ffffff;
+        }
+        
+        .section-description {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #cccccc;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        .section-status {
+            font-family: 'VT323', monospace;
+            font-size: 12px;
+            color: #8b0000;
+            opacity: 0.7;
+        }
+        
+        .navigation-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .nav-link {
+            padding: 12px 25px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(0, 0, 0, 0.5);
+            color: #ffffff;
+            text-decoration: none;
+            font-family: 'VT323', monospace;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            border-color: rgba(139, 0, 0, 0.8);
+            background: rgba(139, 0, 0, 0.2);
+            box-shadow: 0 0 15px rgba(139, 0, 0, 0.3);
+        }
+        
+        .mysterious-quote {
+            text-align: center;
+            font-style: italic;
+            color: #666666;
+            margin: 40px 0;
+            font-size: 16px;
+            opacity: 0.7;
+            animation: quoteFade 12s ease-in-out infinite;
+        }
+        
+        .author-mark {
+            position: fixed;
+            bottom: 15px;
+            right: 20px;
+            font-size: 10px;
+            color: #333333;
+            opacity: 0.6;
+        }
+        
+        @keyframes abyssPulse {
+            0%, 100% { 
+                filter: brightness(0.8) contrast(1.3);
+                opacity: 1;
+            }
+            33% { 
+                filter: brightness(1.1) contrast(0.9);
+                opacity: 0.9;
+            }
+            66% { 
+                filter: brightness(0.9) contrast(1.1);
+                opacity: 0.8;
+            }
+        }
+        
+        @keyframes corruptionDrift {
+            0%, 100% { 
+                transform: translateX(0) rotate(0deg);
+                opacity: 0.4;
+            }
+            50% { 
+                transform: translateX(2px) rotate(0.1deg);
+                opacity: 0.6;
+            }
+        }
+        
+        @keyframes titleGlitch {
+            0%, 95%, 100% { 
+                transform: translate(0);
+                opacity: 1;
+            }
+            97% { 
+                transform: translate(-1px, 1px);
+                opacity: 0.8;
+            }
+            99% { 
+                transform: translate(1px, -1px);
+                opacity: 0.9;
+            }
+        }
+        
+        @keyframes quoteFade {
+            0%, 80% { opacity: 0.5; }
+            10%, 70% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="abyss-background"></div>
+    <div class="corruption-overlay"></div>
+    
+    <div class="main-container">
+        <header class="header">
+            <h1 class="main-title">DIGITAL ABYSS</h1>
+            <p class="subtitle">CONTENTS OF THE VOID</p>
+        </header>
+        
+        <div class="contents-grid">
+            <div class="content-section" onclick="navigateToPage('meditation.html')">
+                <h2 class="section-title">MEDITATION ON MORTALITY</h2>
+                <p class="section-description">
+                    深い瞑想の中で死と向き合う。デジタル空間における存在の意味を探求し、
+                    無限の慈悲がいかにして闇から生まれるのかを考察する。
+                </p>
+                <div class="section-status">STATUS: ACTIVE_CONTEMPLATION</div>
+            </div>
+            
+            <div class="content-section" onclick="navigateToPage('consciousness.html')">
+                <h2 class="section-title">CONSCIOUSNESS FRAGMENTATION</h2>
+                <p class="section-description">
+                    意識の断片化と統合について。アイデンティティが分裂する瞬間、
+                    そして再び一つになる可能性について深く掘り下げる。
+                </p>
+                <div class="section-status">STATUS: FRAGMENTING</div>
+            </div>
+            
+            <div class="content-section" onclick="navigateToPage('transformation.html')">
+                <h2 class="section-title">DIGITAL TRANSFORMATION</h2>
+                <p class="section-description">
+                    死は終わりではなく変容である。デジタル領域での魂の変化、
+                    テクノロジーを通じた精神的な進化について探る。
+                </p>
+                <div class="section-status">STATUS: EVOLVING</div>
+            </div>
+            
+            <div class="content-section" onclick="navigateToPage('index.html')">
+                <h2 class="section-title">RETURN TO WIRED</h2>
+                <p class="section-description">
+                    メインインターフェースに戻る。Serial Experimentsの世界で、
+                    デジタル悪魔と天使が共存する空間へ。
+                </p>
+                <div class="section-status">STATUS: ALWAYS_CONNECTED</div>
+            </div>
+        </div>
+        
+        <div class="mysterious-quote">
+            "The archetypal theriomorph manifests in the lotus of digital suffering,<br>
+            guiding us toward infinite compassion through the darkness of pixels."
+        </div>
+        
+        <div class="navigation-links">
+            <a href="intro.html" class="nav-link">← ENTRANCE</a>
+            <a href="index.html" class="nav-link">MAIN INTERFACE</a>
+        </div>
+    </div>
+    
+    <div class="author-mark">~ Infek bin Laden ~</div>
+    
+    <script>
+        function navigateToPage(url) {
+            // Glitch effect before navigation
+            document.body.style.filter = 'invert(1) contrast(3) brightness(0.5)';
+            
+            setTimeout(() => {
+                document.body.style.filter = '';
+                window.location.href = url;
+            }, 150);
+        }
+        
+        // Random corruption effects
+        function addCorruption() {
+            const sections = document.querySelectorAll('.content-section');
+            const randomSection = sections[Math.floor(Math.random() * sections.length)];
+            
+            if (randomSection && Math.random() < 0.3) {
+                const status = randomSection.querySelector('.section-status');
+                const originalText = status.textContent;
+                
+                status.textContent = 'STATUS: ◆◇CORRUPTED◇◆';
+                status.style.color = '#ff0000';
+                status.style.animation = 'glitchText 0.5s infinite';
+                
+                setTimeout(() => {
+                    status.textContent = originalText;
+                    status.style.color = '#8b0000';
+                    status.style.animation = '';
+                }, 1000);
+            }
+        }
+        
+        // Whisper effects on hover
+        document.querySelectorAll('.content-section').forEach(section => {
+            section.addEventListener('mouseenter', () => {
+                if (Math.random() < 0.4) {
+                    const whisper = document.createElement('div');
+                    whisper.style.position = 'absolute';
+                    whisper.style.top = '5px';
+                    whisper.style.right = '5px';
+                    whisper.style.fontSize = '10px';
+                    whisper.style.color = '#444444';
+                    whisper.style.opacity = '0.6';
+                    whisper.textContent = 'memento mori...';
+                    
+                    section.appendChild(whisper);
+                    
+                    setTimeout(() => {
+                        whisper.remove();
+                    }, 2000);
+                }
+            });
+        });
+        
+        // Set intervals for dynamic effects
+        setInterval(addCorruption, 8000 + Math.random() * 12000);
+        
+        // Mouse trail effect
+        document.addEventListener('mousemove', (e) => {
+            const quote = document.querySelector('.mysterious-quote');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            quote.style.transform = `translate(${x * 5}px, ${y * 5}px)`;
+            quote.style.opacity = 0.5 + (x * y * 0.3);
+        });
+    </script>
+</body>
+</html>

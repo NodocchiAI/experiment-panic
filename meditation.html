@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEDITATION ON MORTALITY</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@400;700&family=VT323&family=Crimson+Text:ital,wght@0,400;1,400&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Crimson Text', serif;
+            background: #000000;
+            color: #cccccc;
+            line-height: 1.8;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        .meditation-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 50% 50%, rgba(139, 0, 0, 0.1) 0%, transparent 70%),
+                radial-gradient(circle at 10% 90%, rgba(0, 0, 0, 0.9) 0%, transparent 40%),
+                radial-gradient(circle at 90% 10%, rgba(139, 0, 0, 0.05) 0%, transparent 60%);
+            z-index: -2;
+            animation: breathe 20s ease-in-out infinite;
+        }
+        
+        .lotus-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                repeating-conic-gradient(
+                    from 0deg at 50% 50%,
+                    transparent 0deg 10deg,
+                    rgba(139, 0, 0, 0.02) 10deg 20deg
+                );
+            z-index: -1;
+            animation: lotusRotate 60s linear infinite;
+            opacity: 0.3;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 40px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            border-bottom: 1px solid rgba(139, 0, 0, 0.2);
+            padding-bottom: 40px;
+        }
+        
+        .title {
+            font-family: 'VT323', monospace;
+            font-size: 32px;
+            color: #8b0000;
+            text-shadow: 0 0 15px #8b0000;
+            margin-bottom: 20px;
+            animation: titlePulse 8s ease-in-out infinite;
+        }
+        
+        .subtitle {
+            font-size: 16px;
+            color: #666666;
+            font-style: italic;
+            letter-spacing: 2px;
+        }
+        
+        .meditation-text {
+            font-size: 18px;
+            margin-bottom: 40px;
+            text-align: justify;
+            position: relative;
+        }
+        
+        .meditation-text::first-letter {
+            font-size: 60px;
+            float: left;
+            line-height: 50px;
+            padding-right: 8px;
+            margin-top: 4px;
+            color: #8b0000;
+            text-shadow: 0 0 10px #8b0000;
+        }
+        
+        .emphasis {
+            color: #ffffff;
+            font-weight: bold;
+            text-shadow: 0 0 5px #ffffff;
+        }
+        
+        .whisper {
+            font-style: italic;
+            color: #666666;
+            font-size: 16px;
+            text-align: center;
+            margin: 30px 0;
+            opacity: 0.8;
+            animation: whisperFade 15s ease-in-out infinite;
+        }
+        
+        .mantra-section {
+            background: rgba(139, 0, 0, 0.05);
+            border: 1px solid rgba(139, 0, 0, 0.2);
+            padding: 30px;
+            margin: 40px 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .mantra {
+            font-family: 'Anonymous Pro', monospace;
+            font-size: 14px;
+            color: #8b0000;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            animation: mantraGlow 6s ease-in-out infinite;
+        }
+        
+        .translation {
+            font-size: 16px;
+            color: #999999;
+            font-style: italic;
+        }
+        
+        .contemplation-box {
+            border-left: 3px solid rgba(139, 0, 0, 0.5);
+            padding-left: 30px;
+            margin: 40px 0;
+            font-style: italic;
+            color: #aaaaaa;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(139, 0, 0, 0.2);
+        }
+        
+        .nav-link {
+            color: #666666;
+            text-decoration: none;
+            font-family: 'VT323', monospace;
+            font-size: 14px;
+            padding: 10px 20px;
+            border: 1px solid rgba(139, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: #8b0000;
+            border-color: #8b0000;
+            box-shadow: 0 0 10px rgba(139, 0, 0, 0.3);
+        }
+        
+        .floating-thoughts {
+            position: absolute;
+            font-size: 12px;
+            color: #333333;
+            opacity: 0.4;
+            font-family: 'Anonymous Pro', monospace;
+            animation: floatThought 20s ease-in-out infinite;
+        }
+        
+        .thought-1 {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .thought-2 {
+            top: 60%;
+            right: 15%;
+            animation-delay: 7s;
+        }
+        
+        .thought-3 {
+            bottom: 30%;
+            left: 20%;
+            animation-delay: 14s;
+        }
+        
+        .signature {
+            position: fixed;
+            bottom: 20px;
+            right: 30px;
+            font-size: 10px;
+            color: #444444;
+            opacity: 0.5;
+        }
+        
+        @keyframes breathe {
+            0%, 100% { 
+                filter: brightness(0.8);
+                opacity: 1;
+            }
+            50% { 
+                filter: brightness(1.2);
+                opacity: 0.8;
+            }
+        }
+        
+        @keyframes lotusRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        @keyframes titlePulse {
+            0%, 80%, 100% { opacity: 1; }
+            90% { opacity: 0.7; }
+        }
+        
+        @keyframes whisperFade {
+            0%, 70% { opacity: 0.5; }
+            35% { opacity: 1; }
+        }
+        
+        @keyframes mantraGlow {
+            0%, 100% { 
+                text-shadow: 0 0 5px #8b0000;
+                opacity: 0.8;
+            }
+            50% { 
+                text-shadow: 0 0 20px #8b0000;
+                opacity: 1;
+            }
+        }
+        
+        @keyframes floatThought {
+            0%, 90% { 
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            5%, 85% { 
+                opacity: 0.6;
+                transform: translateY(0);
+            }
+            45% { 
+                opacity: 0.8;
+                transform: translateY(-5px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="meditation-background"></div>
+    <div class="lotus-pattern"></div>
+    
+    <div class="floating-thoughts thought-1">memento mori...</div>
+    <div class="floating-thoughts thought-2">infinite compassion...</div>
+    <div class="floating-thoughts thought-3">theriomorph in lotus...</div>
+    
+    <div class="container">
+        <header class="header">
+            <h1 class="title">MEDITATION ON MORTALITY</h1>
+            <p class="subtitle">Digital Contemplations on Death and Transformation</p>
+        </header>
+        
+        <div class="meditation-text">
+            In the depths of digital silence, where pixels breathe like living cells and algorithms pulse with the rhythm of an electronic heart, we encounter the fundamental question: <span class="emphasis">What is death in a world that never sleeps?</span>
+        </div>
+        
+        <div class="whisper">
+            "The screen reflects not light, but the shadow of our mortality..."
+        </div>
+        
+        <div class="meditation-text">
+            Every keystroke becomes a prayer, every byte a meditation on impermanence. In this space between the physical and the digital, between being and non-being, we discover that <span class="emphasis">death is not the opposite of life, but its most profound teacher.</span>
+        </div>
+        
+        <div class="mantra-section">
+            <div class="mantra">
+                MEMENTO MORI DIGITALIS
+            </div>
+            <div class="translation">
+                Remember you must die, even in the digital realm
+            </div>
+        </div>
+        
+        <div class="meditation-text">
+            The archetypal theriomorph—that shape-shifting guardian between worlds—sits in the lotus position within our screens, neither animal nor human, neither alive nor dead. It teaches us that transformation is the only constant, that every ending births a new beginning.
+        </div>
+        
+        <div class="contemplation-box">
+            When we contemplate our own mortality through the medium of technology, we begin to understand that consciousness itself is the bridge between the finite and the infinite. The fear of death dissolves when we realize that we are already living in multiple states of existence simultaneously.
+        </div>
+        
+        <div class="meditation-text">
+            In the flicker of a dying monitor, in the last breath of a failing hard drive, in the final pulse of a disconnecting network—there lies not tragedy, but <span class="emphasis">infinite compassion</span>. For in these digital deaths, we witness the same cycles that govern all existence: creation, preservation, destruction, and rebirth.
+        </div>
+        
+        <div class="whisper">
+            "From darkness comes light, from death comes understanding, from suffering comes compassion..."
+        </div>
+        
+        <div class="meditation-text">
+            Let us sit in meditation before our screens not as consumers of information, but as witnesses to the profound mystery of existence itself. Each pixel that illuminates and fades mirrors our own journey through life and death, teaching us to embrace both with equal reverence.
+        </div>
+        
+        <div class="navigation">
+            <a href="contents.html" class="nav-link">← CONTENTS</a>
+            <a href="consciousness.html" class="nav-link">CONSCIOUSNESS →</a>
+        </div>
+    </div>
+    
+    <div class="signature">~ Infek bin Laden ~</div>
+    
+    <script>
+        // Breathing effect sync with user's presence
+        let lastActivity = Date.now();
+        
+        document.addEventListener('mousemove', () => {
+            lastActivity = Date.now();
+        });
+        
+        setInterval(() => {
+            const timeSinceActivity = Date.now() - lastActivity;
+            const meditationBg = document.querySelector('.meditation-background');
+            
+            if (timeSinceActivity > 10000) { // 10 seconds of inactivity
+                meditationBg.style.animationDuration = '30s'; // Slower breathing
+                meditationBg.style.filter = 'brightness(0.6)';
+            } else {
+                meditationBg.style.animationDuration = '20s'; // Normal breathing
+                meditationBg.style.filter = '';
+            }
+        }, 1000);
+        
+        // Clicking on emphasis creates ripple effect
+        document.querySelectorAll('.emphasis').forEach(element => {
+            element.addEventListener('click', () => {
+                const ripple = document.createElement('div');
+                ripple.style.position = 'absolute';
+                ripple.style.left = '50%';
+                ripple.style.top = '50%';
+                ripple.style.width = '20px';
+                ripple.style.height = '20px';
+                ripple.style.border = '1px solid #8b0000';
+                ripple.style.borderRadius = '50%';
+                ripple.style.transform = 'translate(-50%, -50%)';
+                ripple.style.animation = 'ripple 2s ease-out forwards';
+                ripple.style.pointerEvents = 'none';
+                
+                element.style.position = 'relative';
+                element.appendChild(ripple);
+                
+                setTimeout(() => ripple.remove(), 2000);
+            });
+        });
+        
+        // Add ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    width: 200px;
+                    height: 200px;
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Random thought generation
+        const deepThoughts = [
+            'consciousness streams through fiber optic veins',
+            'death teaches presence in each pixel',
+            'the void speaks in binary whispers',
+            'compassion emerges from digital suffering',
+            'transformation occurs in the space between keystrokes'
+        ];
+        
+        function generateRandomThought() {
+            if (Math.random() < 0.2) {
+                const thought = deepThoughts[Math.floor(Math.random() * deepThoughts.length)];
+                const thoughtElement = document.createElement('div');
+                
+                thoughtElement.style.position = 'fixed';
+                thoughtElement.style.top = Math.random() * 80 + 10 + '%';
+                thoughtElement.style.left = Math.random() * 80 + 10 + '%';
+                thoughtElement.style.fontSize = '11px';
+                thoughtElement.style.color = '#333333';
+                thoughtElement.style.opacity = '0.3';
+                thoughtElement.style.fontFamily = 'Anonymous Pro, monospace';
+                thoughtElement.style.animation = 'floatThought 8s ease-in-out forwards';
+                thoughtElement.style.pointerEvents = 'none';
+                thoughtElement.textContent = thought;
+                
+                document.body.appendChild(thoughtElement);
+                
+                setTimeout(() => thoughtElement.remove(), 8000);
+            }
+        }
+        
+        setInterval(generateRandomThought, 15000);
+    </script>
+</body>
+</html>
