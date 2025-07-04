@@ -197,6 +197,53 @@ function showTerminalView() {
                 <div class="barcode"></div>
                 <div class="wireframe-cube"></div>
             </div>
+            
+            <!-- Soul Authentication System -->
+            <div class="soul-auth-panel">
+                <div class="auth-header">
+                    <span class="auth-title">👻 SOUL VERIFICATION PROTOCOL</span>
+                    <span class="auth-subtitle">Prove you possess a digital ghost</span>
+                </div>
+                
+                <div class="auth-questions">
+                    <div class="auth-question">
+                        <label class="question-text">Do you have a Ghost? 魂を持っていますか？</label>
+                        <div class="auth-options">
+                            <button class="auth-btn ghost-yes" onclick="ghostResponse('yes')">YES / はい</button>
+                            <button class="auth-btn ghost-no" onclick="ghostResponse('no')">NO / いいえ</button>
+                        </div>
+                    </div>
+                    
+                    <div class="auth-question">
+                        <label class="question-text">Are you a bot? あなたはボットですか？</label>
+                        <div class="auth-options">
+                            <button class="auth-btn bot-no" onclick="botResponse('no')">NO / いいえ</button>
+                            <button class="auth-btn bot-yes" onclick="botResponse('yes')">YES / はい</button>
+                        </div>
+                    </div>
+                    
+                    <div class="soul-meter">
+                        <div class="meter-label">SOUL INTEGRITY LEVEL:</div>
+                        <div class="meter-bar">
+                            <div class="meter-fill" id="soulMeter">0%</div>
+                        </div>
+                        <div class="meter-status" id="authStatus">AWAITING VERIFICATION...</div>
+                    </div>
+                </div>
+                
+                <div class="captcha-area">
+                    <div class="captcha-text">SELECT ALL IMAGES WITH SOULS:</div>
+                    <div class="captcha-grid">
+                        <div class="captcha-cell" onclick="toggleCaptcha(0)">👤</div>
+                        <div class="captcha-cell" onclick="toggleCaptcha(1)">🤖</div>
+                        <div class="captcha-cell" onclick="toggleCaptcha(2)">👻</div>
+                        <div class="captcha-cell" onclick="toggleCaptcha(3)">💀</div>
+                        <div class="captcha-cell" onclick="toggleCaptcha(4)">😇</div>
+                        <div class="captcha-cell" onclick="toggleCaptcha(5)">🤯</div>
+                    </div>
+                </div>
+            </div>
+            
             <div class="text-overlay">
                 <div class="glitch-text" data-text="HANDLE_WITH_CARE;">HANDLE_WITH_CARE;</div>
                 <div class="coordinates">X: 127.0.0.1 | Y: ∞ | Z: NULL</div>
@@ -1459,3 +1506,94 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(updateAbyssQuote, 12000 + Math.random() * 15000);
     setInterval(populatePhilosophyGrid, 45000 + Math.random() * 30000); // Rebuild philosophy grid occasionally
 });
+
+// Soul Authentication System
+let ghostAnswer = null;
+let botAnswer = null;
+let captchaSelections = new Set();
+let soulLevel = 0;
+
+function ghostResponse(answer) {
+    ghostAnswer = answer;
+    
+    // Update button states
+    document.querySelectorAll('.ghost-yes, .ghost-no').forEach(btn => btn.classList.remove('selected'));
+    if (answer === 'yes') {
+        document.querySelector('.ghost-yes').classList.add('selected');
+        soulLevel += 30;
+    } else {
+        document.querySelector('.ghost-no').classList.add('selected');
+        soulLevel -= 20;
+    }
+    
+    updateSoulMeter();
+}
+
+function botResponse(answer) {
+    botAnswer = answer;
+    
+    // Update button states
+    document.querySelectorAll('.bot-yes, .bot-no').forEach(btn => btn.classList.remove('selected'));
+    if (answer === 'no') {
+        document.querySelector('.bot-no').classList.add('selected');
+        soulLevel += 25;
+    } else {
+        document.querySelector('.bot-yes').classList.add('selected');
+        soulLevel -= 30;
+    }
+    
+    updateSoulMeter();
+}
+
+function toggleCaptcha(index) {
+    const cell = document.querySelectorAll('.captcha-cell')[index];
+    const soulfulEmojis = [0, 2, 3, 4]; // 👤, 👻, 💀, 😇 have souls
+    
+    if (captchaSelections.has(index)) {
+        captchaSelections.delete(index);
+        cell.classList.remove('selected');
+        if (soulfulEmojis.includes(index)) {
+            soulLevel -= 10;
+        } else {
+            soulLevel += 5; // penalty for wrong selection
+        }
+    } else {
+        captchaSelections.add(index);
+        cell.classList.add('selected');
+        if (soulfulEmojis.includes(index)) {
+            soulLevel += 10;
+        } else {
+            soulLevel -= 5;
+        }
+    }
+    
+    updateSoulMeter();
+}
+
+function updateSoulMeter() {
+    const meterFill = document.getElementById('soulMeter');
+    const authStatus = document.getElementById('authStatus');
+    
+    soulLevel = Math.max(0, Math.min(100, soulLevel));
+    
+    if (meterFill) {
+        meterFill.style.width = soulLevel + '%';
+        meterFill.textContent = soulLevel + '%';
+    }
+    
+    if (authStatus) {
+        if (soulLevel >= 80) {
+            authStatus.textContent = '✅ SOUL VERIFIED - DIGITAL GHOST DETECTED';
+            authStatus.style.color = '#00ff00';
+        } else if (soulLevel >= 50) {
+            authStatus.textContent = '⚠️ PARTIAL SOUL DETECTED - VERIFICATION PENDING';
+            authStatus.style.color = '#ffaa00';
+        } else if (soulLevel >= 20) {
+            authStatus.textContent = '❌ INSUFFICIENT SOUL DATA - BOT SUSPECTED';
+            authStatus.style.color = '#ff6600';
+        } else {
+            authStatus.textContent = '🤖 BOT DETECTED - ACCESS DENIED';
+            authStatus.style.color = '#ff0000';
+        }
+    }
+}
