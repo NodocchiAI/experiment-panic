@@ -517,7 +517,7 @@ body {
     font-family: 'VT323', monospace;
     font-size: 14px;
     color: #00ffff;
-    text-shadow: 0 0 10px #00ffff;
+    text-shadow: 0 0 5px #00ffff;
 }
 
 .header-center {
@@ -529,7 +529,7 @@ body {
     font-size: 24px;
     font-weight: 900;
     color: #ffffff;
-    text-shadow: 0 0 20px #ffffff, 0 0 10px #8b0000;
+    text-shadow: 0 0 8px #ffffff, 0 0 4px #8b0000;
     margin-bottom: 5px;
     animation: titleGlitch 5s infinite;
 }
@@ -580,13 +580,13 @@ body {
 }
 
 .panel-header {
-    background: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.15);
     padding: 12px 16px;
     font-family: 'VT323', monospace;
     font-size: 16px;
     color: #ffffff;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.5);
-    text-shadow: 0 0 12px #ffffff, 0 0 6px #ffffff;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+    text-shadow: 0 0 5px #ffffff, 0 0 2px #ffffff;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -1535,7 +1535,7 @@ body {
     color: #ffffff;
     margin-top: 10px;
     opacity: 0.8;
-    text-shadow: 0 0 5px #ffffff;
+    text-shadow: 0 0 2px #ffffff;
 }
 
 .death-signature {
