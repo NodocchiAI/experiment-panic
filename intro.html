@@ -221,12 +221,13 @@
         document.querySelector('.enter-link').addEventListener('click', (e) => {
             e.preventDefault();
             
-            // Flash effect
-            document.body.style.filter = 'invert(1) brightness(2)';
+            // Subtle transition effect
+            document.body.style.filter = 'brightness(0.7) contrast(1.2)';
+            document.body.style.transition = 'filter 0.1s ease';
             setTimeout(() => {
                 document.body.style.filter = '';
                 window.location.href = 'contents.html';
-            }, 200);
+            }, 100);
         });
         
         // Konami code for hidden message
