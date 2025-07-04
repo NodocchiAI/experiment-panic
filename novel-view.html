@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOVEL VIEW - Serial Experiments Interface</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Novel View Specific Styles */
+        .novel-container {
+            min-height: 100vh;
+            background: rgba(0, 0, 0, 0.95);
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .novel-header {
+            padding: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .novel-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 24px;
+            color: #ffffff;
+            text-shadow: 0 0 15px #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .novel-meta {
+            display: flex;
+            gap: 20px;
+            font-size: 12px;
+            opacity: 0.8;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .status-active { color: #00ff00; }
+        .status-draft { color: #ffaa00; }
+        .status-complete { color: #00ffff; }
+        .status-corrupted { color: #ff0000; }
+
+        .novel-content {
+            flex: 1;
+            display: flex;
+            position: relative;
+        }
+
+        .reading-controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            display: flex;
+            gap: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .control-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #ffffff;
+            padding: 5px 10px;
+            font-size: 12px;
+            cursor: pointer;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .control-btn.active {
+            background: rgba(0, 255, 255, 0.3);
+            border-color: #00ffff;
+        }
+
+        /* Vertical Writing Styles */
+        .text-vertical {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            direction: rtl;
+            overflow-x: auto;
+            overflow-y: hidden;
+            height: 100vh;
+            padding: 40px 60px;
+            line-height: 2.2;
+            letter-spacing: 0.1em;
+            font-family: 'Noto Sans JP', serif;
+        }
+
+        /* Horizontal Writing Styles */
+        .text-horizontal {
+            writing-mode: horizontal-tb;
+            direction: ltr;
+            overflow-y: auto;
+            height: 100vh;
+            padding: 40px 60px;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+            font-family: 'Anonymous Pro', monospace;
+        }
+
+        .chapter-content {
+            font-size: var(--font-size, 16px);
+            color: #ffffff;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 30px;
+            margin: 20px 0;
+            backdrop-filter: blur(5px);
+        }
+
+        .chapter-title {
+            font-family: 'VT323', monospace;
+            font-size: calc(var(--font-size, 16px) * 1.5);
+            color: #00ffff;
+            margin-bottom: 30px;
+            text-align: center;
+            text-shadow: 0 0 10px #00ffff;
+        }
+
+        .chapter-text {
+            white-space: pre-line;
+            text-indent: 1em;
+        }
+
+        .chapter-nav {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .chapter-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #ffffff;
+            padding: 8px 15px;
+            font-size: 12px;
+            cursor: pointer;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+            font-family: 'VT323', monospace;
+        }
+
+        .chapter-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .chapter-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 50px;
+            color: #666666;
+            font-style: italic;
+        }
+
+        .error-message {
+            text-align: center;
+            padding: 50px;
+            color: #ff0000;
+            border: 1px solid #ff0000;
+            background: rgba(139, 0, 0, 0.1);
+            margin: 20px;
+            border-radius: 5px;
+        }
+
+        .corrupted-novel {
+            filter: hue-rotate(180deg) contrast(1.5);
+            animation: corruptionGlitch 3s ease-in-out infinite;
+        }
+
+        @keyframes corruptionGlitch {
+            0%, 95% { 
+                transform: translateX(0);
+                opacity: 1;
+            }
+            96% { 
+                transform: translateX(-2px);
+                opacity: 0.8;
+            }
+            97% { 
+                transform: translateX(2px);
+                opacity: 0.9;
+            }
+            98% { 
+                transform: translateX(-1px);
+                opacity: 0.7;
+            }
+            99% { 
+                transform: translateX(1px);
+                opacity: 1;
+            }
+        }
+
+        /* Font Size Variables */
+        :root {
+            --font-size: 16px;
+        }
+
+        .font-small { --font-size: 14px; }
+        .font-medium { --font-size: 16px; }
+        .font-large { --font-size: 18px; }
+    </style>
+</head>
+<body>
+    <!-- Background Layers -->
+    <div class="bg-layer-1"></div>
+    <div class="bg-layer-2"></div>
+    <div class="glitch-overlay"></div>
+
+    <div class="novel-container font-medium">
+        <!-- Reading Controls -->
+        <div class="reading-controls">
+            <button class="control-btn" id="toggleWriting">縦書き</button>
+            <button class="control-btn font-small" onclick="setFontSize('small')">小</button>
+            <button class="control-btn font-medium active" onclick="setFontSize('medium')">中</button>
+            <button class="control-btn font-large" onclick="setFontSize('large')">大</button>
+        </div>
+
+        <!-- Novel Header -->
+        <div class="novel-header">
+            <div id="novelHeader" class="loading">
+                Loading novel information...
+            </div>
+        </div>
+
+        <!-- Novel Content -->
+        <div class="novel-content">
+            <div id="novelContent" class="text-vertical loading">
+                Loading chapter content from digital archives...
+            </div>
+        </div>
+
+        <!-- Chapter Navigation -->
+        <div class="chapter-nav">
+            <button class="chapter-btn" id="prevChapter">← 前章</button>
+            <span id="chapterInfo" style="color: #ffffff; font-family: 'VT323', monospace;">-</span>
+            <button class="chapter-btn" id="nextChapter">次章 →</button>
+            <button class="chapter-btn" onclick="window.location.href='index.html'">メイン画面</button>
+        </div>
+    </div>
+
+    <script src="content-loader.js"></script>
+    <script>
+        // Get novel ID and chapter from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const novelId = urlParams.get('id');
+        const chapterParam = urlParams.get('chapter');
+        let currentChapter = parseInt(chapterParam) || 1;
+        let currentNovel = null;
+        let isVertical = true;
+
+        async function loadNovel() {
+            if (!novelId) {
+                document.getElementById('novelContent').innerHTML = `
+                    <div class="error-message">
+                        <h2>ERROR: NOVEL_ID_NOT_FOUND</h2>
+                        <p>No novel specified in URL parameters</p>
+                        <a href="index.html" style="color: #00ffff;">Return to Main Interface</a>
+                    </div>
+                `;
+                return;
+            }
+
+            // Wait for content manager to load
+            while (!contentManager.isLoaded) {
+                await new Promise(resolve => setTimeout(resolve, 100));
+            }
+
+            currentNovel = contentManager.getNovel(novelId);
+
+            if (!currentNovel) {
+                document.getElementById('novelContent').innerHTML = `
+                    <div class="error-message">
+                        <h2>NOVEL_NOT_FOUND</h2>
+                        <p>Novel "${novelId}" does not exist in the digital archives</p>
+                        <a href="index.html" style="color: #00ffff;">Return to Main Interface</a>
+                    </div>
+                `;
+                return;
+            }
+
+            renderNovelHeader();
+            renderCurrentChapter();
+            updateChapterNavigation();
+        }
+
+        function renderNovelHeader() {
+            const statusClass = `status-${currentNovel.status.toLowerCase()}`;
+            const corruptedClass = currentNovel.status === 'CORRUPTED' ? 'corrupted-novel' : '';
+            
+            document.getElementById('novelHeader').innerHTML = `
+                <h1 class="novel-title ${corruptedClass}">${currentNovel.title}</h1>
+                <div class="novel-meta">
+                    <div class="meta-item">
+                        <span>Status:</span>
+                        <span class="${statusClass}">${currentNovel.status}</span>
+                    </div>
+                    <div class="meta-item">
+                        <span>Progress:</span>
+                        <span>${currentNovel.progress}%</span>
+                    </div>
+                    ${currentNovel.word_count ? `
+                        <div class="meta-item">
+                            <span>Words:</span>
+                            <span>${currentNovel.word_count.toLocaleString()}</span>
+                        </div>
+                    ` : ''}
+                    ${currentNovel.last_updated ? `
+                        <div class="meta-item">
+                            <span>Updated:</span>
+                            <span>${currentNovel.last_updated}</span>
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+
+            // Update page title
+            document.title = `${currentNovel.title} - NOVEL VIEW`;
+        }
+
+        function renderCurrentChapter() {
+            const chapter = currentNovel.chapters.find(ch => ch.chapter === currentChapter);
+            const contentEl = document.getElementById('novelContent');
+
+            if (!chapter) {
+                contentEl.innerHTML = `
+                    <div class="error-message">
+                        <h2>CHAPTER_NOT_FOUND</h2>
+                        <p>Chapter ${currentChapter} does not exist</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const corruptedClass = currentNovel.status === 'CORRUPTED' || chapter.is_corrupted ? 'corrupted-novel' : '';
+            
+            contentEl.className = isVertical ? 'text-vertical' : 'text-horizontal';
+            contentEl.innerHTML = `
+                <div class="chapter-content ${corruptedClass}">
+                    <div class="chapter-title">第${chapter.chapter}章: ${chapter.title}</div>
+                    <div class="chapter-text">${chapter.content}</div>
+                </div>
+            `;
+        }
+
+        function updateChapterNavigation() {
+            const prevBtn = document.getElementById('prevChapter');
+            const nextBtn = document.getElementById('nextChapter');
+            const chapterInfo = document.getElementById('chapterInfo');
+
+            prevBtn.disabled = currentChapter <= 1;
+            nextBtn.disabled = currentChapter >= currentNovel.chapters.length;
+
+            chapterInfo.textContent = `${currentChapter} / ${currentNovel.chapters.length}`;
+
+            prevBtn.onclick = () => {
+                if (currentChapter > 1) {
+                    currentChapter--;
+                    renderCurrentChapter();
+                    updateChapterNavigation();
+                    updateURL();
+                }
+            };
+
+            nextBtn.onclick = () => {
+                if (currentChapter < currentNovel.chapters.length) {
+                    currentChapter++;
+                    renderCurrentChapter();
+                    updateChapterNavigation();
+                    updateURL();
+                }
+            };
+        }
+
+        function updateURL() {
+            const newURL = new URL(window.location);
+            newURL.searchParams.set('chapter', currentChapter);
+            window.history.replaceState({}, '', newURL);
+        }
+
+        function toggleWritingMode() {
+            isVertical = !isVertical;
+            const toggleBtn = document.getElementById('toggleWriting');
+            toggleBtn.textContent = isVertical ? '横書き' : '縦書き';
+            renderCurrentChapter();
+        }
+
+        function setFontSize(size) {
+            const container = document.querySelector('.novel-container');
+            container.className = container.className.replace(/font-(small|medium|large)/, '');
+            container.classList.add(`font-${size}`);
+
+            // Update active button
+            document.querySelectorAll('.control-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`.font-${size}`).classList.add('active');
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', loadNovel);
+        document.getElementById('toggleWriting').addEventListener('click', toggleWritingMode);
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft' || e.key === 'h') {
+                document.getElementById('prevChapter').click();
+            } else if (e.key === 'ArrowRight' || e.key === 'l') {
+                document.getElementById('nextChapter').click();
+            } else if (e.key === 'v') {
+                toggleWritingMode();
+            }
+        });
+    </script>
+</body>
+</html>

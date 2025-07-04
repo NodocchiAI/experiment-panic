@@ -1340,6 +1340,12 @@ function loadDynamicDiary() {
             </div>
         `;
 
+        // Add click handler to navigate to individual diary page
+        entryDiv.style.cursor = 'pointer';
+        entryDiv.addEventListener('click', () => {
+            window.location.href = `diary-entry.html?id=${entry.id}`;
+        });
+
         container.appendChild(entryDiv);
     });
 }
@@ -1371,6 +1377,12 @@ function loadDynamicNovels() {
             </div>
             ${novel.synopsis ? `<div class="novel-synopsis">${novel.synopsis.substring(0, 100)}...</div>` : ''}
         `;
+
+        // Add click handler to navigate to individual novel page
+        novelDiv.style.cursor = 'pointer';
+        novelDiv.addEventListener('click', () => {
+            window.location.href = `novel-view.html?id=${novel.id}&chapter=1`;
+        });
 
         container.appendChild(novelDiv);
     });
