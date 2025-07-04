@@ -461,13 +461,56 @@ body {
 
 /* Header */
 .main-header {
+    position: relative;
+    padding: 20px 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+}
+
+.header-chaos-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-image: 
+        url('assets/header1.jpg'),
+        url('assets/header2.jpg'),
+        url('assets/cursed4.jpg'),
+        url('assets/sample6.jpg'),
+        url('assets/whiteblack3.jpg'),
+        url('assets/cursed8.jpg');
+    background-size: 
+        300px 120px,
+        250px 100px,
+        200px 80px,
+        180px 90px,
+        220px 70px,
+        150px 100px;
+    background-position: 
+        0% 0%,
+        100% 0%,
+        30% 50%,
+        70% 20%,
+        10% 80%,
+        90% 70%;
+    background-repeat: no-repeat;
+    opacity: 0.25;
+    mix-blend-mode: overlay;
+    filter: grayscale(0.6) contrast(1.4) brightness(0.8);
+}
+
+.header-content {
+    position: relative;
+    z-index: 2;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 30px;
-    background: rgba(0, 0, 0, 0.9);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 5px;
+    padding: 10px 20px;
 }
 
 .header-left, .header-right {
@@ -476,31 +519,6 @@ body {
     gap: 15px;
 }
 
-.logo-sac {
-    width: 40px;
-    height: 40px;
-    background-image: url('./assets/saclogo1.jpg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    filter: invert(1) brightness(1.8) contrast(1.5) opacity(1);
-    border: 2px solid rgba(255, 255, 255, 0.8);
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.6), inset 0 0 5px rgba(255, 255, 255, 0.3);
-    animation: logoGlow 3s ease-in-out infinite;
-}
-
-.logo-toha {
-    width: 40px;
-    height: 40px;
-    background-image: url('./assets/toa.jpg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    filter: invert(1) brightness(1.8) contrast(1.5) opacity(1);
-    border: 2px solid rgba(0, 255, 255, 0.8);
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.6), inset 0 0 5px rgba(255, 255, 255, 0.3);
-    animation: logoGlow 4s ease-in-out infinite;
-}
 
 @keyframes logoGlow {
     0%, 100% { 
