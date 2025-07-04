@@ -292,6 +292,25 @@ function showNovelsView() {
                     </div>
                     <div class="novel-preview">VRの世界に没入しすぎて現実に戻れなくなった人々。技術の進歩は人間を幸せにするのか、それとも...</div>
                 </div>
+                
+                <!-- Demonic Hacking Intrusion -->
+                <div class="demonic-intrusion">
+                    <div class="hack-warning">
+                        <span class="hack-text">⚠ UNAUTHORIZED ACCESS DETECTED ⚠</span>
+                        <span class="demon-signature">👹 DIGITAL DEMON INFILTRATION 👹</span>
+                    </div>
+                    <div class="intrusion-visuals">
+                        <div class="demon-face"></div>
+                        <div class="corruption-matrix"></div>
+                    </div>
+                    <div class="hellish-code">
+                        <div class="evil-line">666.exe EXECUTING...</div>
+                        <div class="evil-line">SOUL.DLL >> CORRUPTED</div>
+                        <div class="evil-line">BEELZEBUB@HELL:~$ rm -rf /salvation/*</div>
+                        <div class="evil-line">ERROR: HEAVEN.SYS NOT FOUND</div>
+                        <div class="evil-line">LOADING INFERNAL_PROTOCOL...</div>
+                    </div>
+                </div>
             </div>
         </section>
         
