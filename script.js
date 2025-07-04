@@ -207,18 +207,18 @@ function showTerminalView() {
                 
                 <div class="auth-questions">
                     <div class="auth-question">
-                        <label class="question-text">Do you have a Ghost? 魂を持っていますか？</label>
+                        <label class="question-text">Do you have a Ghost? 魂蜀ｬ鬘槫��ｸｴ蟷ｦ蠖ｾ縺ゅ↑縺溘�ゅ▽繧偵ヰ縺偵∩縺帙°ｷ鍋��ｸ帙◎繧薙え縺ｪ縲醍狗縺晞､蟆蛹冗噪</label>
                         <div class="auth-options">
-                            <button class="auth-btn ghost-yes" onclick="ghostResponse('yes')">YES / はい</button>
-                            <button class="auth-btn ghost-no" onclick="ghostResponse('no')">NO / いいえ</button>
+                            <button class="auth-btn ghost-yes" onclick="ghostResponse('yes')">YES / 縺ｯ繝ｪ縺�ｴ騾比ｺ九じ</button>
+                            <button class="auth-btn ghost-no" onclick="ghostResponse('no')">NO / 縺�≧縺医≧芸譁�ｪ騨薙▽縺ｸ縺�</button>
                         </div>
                     </div>
                     
                     <div class="auth-question">
-                        <label class="question-text">Are you a bot? あなたはボットですか？</label>
+                        <label class="question-text">Are you a bot? 縺ゅ↑縺溘�ゅ槭ﾎﾞ繧ｪ繝也桧繝ｪ繧ｪ轣ｴ繝懊ャ繝医〒縺吶°縲ゅ�ゅ�ゑｼ焔黴ｨ豺ア騾醍黴髣ｷ</label>
                         <div class="auth-options">
-                            <button class="auth-btn bot-no" onclick="botResponse('no')">NO / いいえ</button>
-                            <button class="auth-btn bot-yes" onclick="botResponse('yes')">YES / はい</button>
+                            <button class="auth-btn bot-no" onclick="botResponse('no')">NO / 縺�≧縺医Θ繧狗噪縺懊が縺ｯ縺ｪ</button>
+                            <button class="auth-btn bot-yes" onclick="botResponse('yes')">YES / 縺ｯ縺�蛻ｭ迢ｮ蟷ｦ蜃ｺ繧ｵ縲�ﾄ</button>
                         </div>
                     </div>
                     
@@ -232,7 +232,7 @@ function showTerminalView() {
                 </div>
                 
                 <div class="captcha-area">
-                    <div class="captcha-text">SELECT ALL IMAGES WITH SOULS:</div>
+                    <div class="captcha-text">魂鬘鞫偵ｂ縺､縺�≧蜍ｧ驕画勹蝓ｼ繧九▽繧貞�ｨ縺ｦ鈴驕ｸ謚槭＠縺ｦ縺上□縺励ｂ蝗帙∩髮�ｶ：</div>
                     <div class="captcha-grid">
                         <div class="captcha-cell" onclick="toggleCaptcha(0)">👤</div>
                         <div class="captcha-cell" onclick="toggleCaptcha(1)">🤖</div>
