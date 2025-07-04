@@ -91,7 +91,7 @@
         /* Vertical Writing Styles */
         .text-vertical {
             writing-mode: vertical-rl;
-            text-orientation: mixed;
+            text-orientation: upright;
             direction: rtl;
             overflow-x: auto;
             overflow-y: hidden;
@@ -100,6 +100,7 @@
             line-height: 2.2;
             letter-spacing: 0.1em;
             font-family: 'Noto Sans JP', serif;
+            text-combine-upright: all;
         }
 
         /* Horizontal Writing Styles */
@@ -138,6 +139,12 @@
         .chapter-text {
             white-space: pre-line;
             text-indent: 1em;
+            hanging-punctuation: first;
+        }
+
+        .text-vertical .chapter-text {
+            text-orientation: upright;
+            hanging-punctuation: allow-end;
         }
 
         .chapter-nav {
@@ -227,6 +234,35 @@
         .font-small { --font-size: 14px; }
         .font-medium { --font-size: 16px; }
         .font-large { --font-size: 18px; }
+
+        /* Novel Specific Background */
+        .novel-bg-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: 
+                url('assets/sample3.jpg'),
+                url('assets/sample7.jpg'),
+                url('assets/whiteblack4.jpg'),
+                url('assets/cursed5.gif');
+            background-size: 
+                300px 200px,
+                250px 350px,
+                400px 300px,
+                150px 150px;
+            background-position: 
+                10% 20%,
+                90% 60%,
+                30% 80%,
+                70% 15%;
+            background-repeat: no-repeat;
+            opacity: 0.12;
+            mix-blend-mode: multiply;
+            filter: grayscale(0.9) contrast(1.2) blur(1px);
+        }
     </style>
 </head>
 <body>
@@ -234,6 +270,9 @@
     <div class="bg-layer-1"></div>
     <div class="bg-layer-2"></div>
     <div class="glitch-overlay"></div>
+    
+    <!-- Novel Specific Background -->
+    <div class="novel-bg-layer"></div>
 
     <div class="novel-container font-medium">
         <!-- Reading Controls -->

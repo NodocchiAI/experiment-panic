@@ -193,12 +193,12 @@ function showDiaryView() {
         <section class="diary-panel" style="grid-column: span 3;">
             <div class="panel-header">MEMORY_ARCHIVE // SERIAL_EXPERIMENTS</div>
             <div class="diary-entries" style="max-height: 500px;">
-                <div class="entry-item">
+                <div class="entry-item" onclick="window.location.href='diary-entry.html?id=2024-07-03_digital-abyss'" style="cursor: pointer;">
                     <div class="entry-timestamp">2024.07.02_20:30:15</div>
                     <div class="entry-content">現実と仮想の境界が曖昧になっている。Wiredの中で自分を見つけた時、それは本当の自分なのだろうか？昨日のように、画面の向こう側から誰かが私を見ているような感覚がある。それは私自身なのか、それとも別の存在なのか。</div>
                     <div class="entry-glitch">E̴R̷R̸O̶R̵_̸M̷E̴M̸O̷R̶Y̵_̴C̶O̸R̷R̸U̶P̴T̵E̷D̸</div>
                 </div>
-                <div class="entry-item">
+                <div class="entry-item" onclick="window.location.href='diary-entry.html?id=2024-07-02_void-staring'" style="cursor: pointer;">
                     <div class="entry-timestamp">2024.07.01_03:15:42</div>
                     <div class="entry-content">誰もが接続されている。誰もが一人でいる。この矛盾こそがWiredの本質なのかもしれない。深夜のネットサーフィンで見つけた記事。「デジタル孤独症候群」という言葉が妙に心に残る。私たちは本当に繋がっているのだろうか？</div>
                 </div>
@@ -231,7 +231,7 @@ function showNovelsView() {
         <section class="novel-panel" style="grid-column: span 2;">
             <div class="panel-header">FICTION_DATABASE // CREATIVE_OUTPUT</div>
             <div class="novel-grid" style="max-height: 500px; overflow-y: auto;">
-                <div class="novel-item">
+                <div class="novel-item" onclick="window.location.href='novel-view.html?id=digital-metamorphosis&chapter=1'" style="cursor: pointer;">
                     <div class="novel-status">ACTIVE</div>
                     <div class="novel-title">電子の海の向こう側</div>
                     <div class="novel-progress">
@@ -242,7 +242,7 @@ function showNovelsView() {
                     </div>
                     <div class="novel-preview">彼女はキーボードを叩き続けた。画面の向こう側に答えがあると信じて。しかし、入力すればするほど、自分が何者なのかわからなくなっていく...</div>
                 </div>
-                <div class="novel-item">
+                <div class="novel-item" onclick="window.location.href='novel-view.html?id=void-protocols&chapter=1'" style="cursor: pointer;">
                     <div class="novel-status">DRAFT</div>
                     <div class="novel-title">接続された孤独</div>
                     <div class="novel-progress">

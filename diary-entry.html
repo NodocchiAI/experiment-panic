@@ -171,6 +171,32 @@
             border: 1px solid #ff0000;
             background: rgba(139, 0, 0, 0.1);
         }
+
+        /* Diary Specific Background */
+        .diary-bg-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: 
+                url('assets/cursed3.jpg'),
+                url('assets/cursed7.jpg'),
+                url('assets/whiteblack2.jpg');
+            background-size: 
+                400px 300px,
+                350px 250px,
+                500px 400px;
+            background-position: 
+                20% 30%,
+                80% 70%,
+                50% 90%;
+            background-repeat: no-repeat;
+            opacity: 0.15;
+            mix-blend-mode: overlay;
+            filter: grayscale(0.8) contrast(1.3);
+        }
     </style>
 </head>
 <body>
@@ -178,6 +204,9 @@
     <div class="bg-layer-1"></div>
     <div class="bg-layer-2"></div>
     <div class="glitch-overlay"></div>
+    
+    <!-- Diary Specific Background -->
+    <div class="diary-bg-layer"></div>
 
     <div class="diary-container">
         <div id="diaryContent" class="loading">
