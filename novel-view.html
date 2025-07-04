@@ -91,8 +91,8 @@
         /* Vertical Writing Styles */
         .text-vertical {
             writing-mode: vertical-rl;
-            text-orientation: upright;
-            direction: rtl;
+            text-orientation: mixed;
+            direction: ltr;
             overflow-x: auto;
             overflow-y: hidden;
             height: 100vh;
@@ -100,7 +100,6 @@
             line-height: 2.2;
             letter-spacing: 0.1em;
             font-family: 'Noto Sans JP', serif;
-            text-combine-upright: all;
         }
 
         /* Horizontal Writing Styles */
@@ -139,12 +138,6 @@
         .chapter-text {
             white-space: pre-line;
             text-indent: 1em;
-            hanging-punctuation: first;
-        }
-
-        .text-vertical .chapter-text {
-            text-orientation: upright;
-            hanging-punctuation: allow-end;
         }
 
         .chapter-nav {
