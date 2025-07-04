@@ -185,6 +185,12 @@ function showTerminalView() {
         </section>
     `;
     
+    // Load dynamic content after rendering
+    setTimeout(() => {
+        loadDynamicDiary();
+        loadDynamicNovels();
+    }, 100);
+    
     addEntryClickHandlers();
 }
 
