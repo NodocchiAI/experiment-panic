@@ -1,4 +1,4 @@
-// Content Management System for Serial Experiments Interface
+// Content Management System for 虚体 Interface
 class ContentManager {
     constructor() {
         this.diaryEntries = [];

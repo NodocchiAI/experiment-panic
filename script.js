@@ -1125,7 +1125,7 @@ document.addEventListener('keydown', (e) => {
         setTimeout(() => {
             document.body.style.filter = '';
             if (mainTitle) {
-                mainTitle.textContent = 'SERIAL EXPERIMENTS';
+                mainTitle.textContent = '縺ゅ＞縺�∴縺殤XPERIMENTS';
             }
             deathMsg.remove();
         }, 5000);
